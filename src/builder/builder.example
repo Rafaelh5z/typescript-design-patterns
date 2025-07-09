@@ -14,22 +14,22 @@ class Burger {
     }
 
     showDetails() : string {
-        let details = "This " + this.name  + " Burger has: "
+        let details = 'This ' + this.name  + ' Burger has: '
 
         if(this.cheese) {
-            details = details + " Cheese, "
+            details = details + ' Cheese, '
         }
 
         if(this.bacon) {
-            details = details + " Bacon, "
+            details = details + ' Bacon, '
         }
 
         if(this.lettuce) {
-            details = details + " Lettuce, "
+            details = details + ' Lettuce, '
         }
 
         if(this.tomato) {
-            details = details + " Tomato "
+            details = details + ' Tomato '
         }
 
         return details
@@ -77,11 +77,11 @@ class BurgerBuilder {
 // Usage
 
 function builderClient() {
-    const everythingBurgerBuilder = new BurgerBuilder("Everything")
+    const everythingBurgerBuilder = new BurgerBuilder('Everything')
     const everythingBurger = everythingBurgerBuilder.addCheese().addBacon().addLettuce().addTomato().build()
     
     console.log(everythingBurger.showDetails()) 
-    const cheeseBurgerBuilder = new BurgerBuilder("Cheese")
+    const cheeseBurgerBuilder = new BurgerBuilder('Cheese')
     const cheeseBurger = cheeseBurgerBuilder.addCheese().addTomato().build() 
     console.log(cheeseBurger.showDetails())
 }

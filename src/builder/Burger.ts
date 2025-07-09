@@ -11,22 +11,22 @@ class Burger {
 
     showDetails() : string {
 
-        let details = "This " + this.name  + " Burger has: "
+        let details = 'This ' + this.name  + ' Burger has: '
 
         if(this.cheese) {
-            details = details + " Cheese, "
+            details = details + ' Cheese, '
         }
 
         if(this.bacon) {
-            details = details + " Bacon, "
+            details = details + ' Bacon, '
         }
 
         if(this.lettuce) {
-            details = details + " Lettuce, "
+            details = details + ' Lettuce, '
         }
 
         if(this.tomato) {
-            details = details + " Tomato "
+            details = details + ' Tomato '
         }
 
         return details

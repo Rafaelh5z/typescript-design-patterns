@@ -1,6 +1,6 @@
 function builderClient() {
 
-    const everythingBurgerBuilder = new BurgerBuilder("Everything")
+    const everythingBurgerBuilder = new BurgerBuilder('Everything')
     const everythingBurger = everythingBurgerBuilder
         .addCheese()
         .addBacon()
@@ -9,7 +9,7 @@ function builderClient() {
         .build()
     console.log(everythingBurger.showDetails()) 
 
-    const cheeseBurgerBuilder = new BurgerBuilder("Cheese")
+    const cheeseBurgerBuilder = new BurgerBuilder('Cheese')
     const cheeseBurger = cheeseBurgerBuilder
         .addCheese()
         .addTomato()
