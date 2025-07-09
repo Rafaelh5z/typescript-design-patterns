@@ -88,3 +88,48 @@ Cuando el objeto está construido, solicitas el resultado al builder.
 #### Contras
 
 *   La complejidad general del código aumenta, ya que el patrón requiere la creación de múltiples clases nuevas.
+
+---
+
+## Patrón de Diseño Factory Method (Método de Fábrica)
+
+El patrón **Factory Method** es un patrón de diseño creacional que proporciona una interfaz para crear objetos en una superclase, mientras permite a las subclases alterar el tipo de objetos que se crearán.
+
+### Problema que resuelve
+
+Imagina que estás creando una aplicación de logística. La primera versión de tu aplicación solo gestiona el transporte en camiones, por lo que la mayor parte de tu código se encuentra dentro de la clase `Camion`.
+
+Después de un tiempo, tu aplicación se vuelve bastante popular. Cada día recibes decenas de solicitudes de empresas de transporte marítimo para que incorpores la logística marítima en la aplicación.
+
+Agregar una nueva clase `Barco` al programa no es tan simple si el resto del código ya está acoplado a la clase `Camion`. Tendrás que hacer cambios en toda la base de código. Si luego decides agregar otro tipo de transporte, como `Avion`, probablemente necesitarás hacer todos estos cambios de nuevo.
+
+### ¿Cómo funciona?
+
+El patrón Factory Method sugiere que reemplaces las llamadas directas de construcción de objetos (usando el operador `new`) con llamadas a un método de fábrica especial. Los objetos devueltos por un método de fábrica a menudo se denominan "productos".
+
+La superclase puede contener una implementación predeterminada del método de fábrica. Las subclases pueden anular este método para cambiar el tipo de producto que se está creando.
+
+### Estructura
+
+1.  La interfaz **Producto** declara la interfaz para los objetos que el método de fábrica crea.
+2.  Los **Productos Concretos** son diferentes implementaciones de la interfaz del producto.
+3.  La clase **Creador** declara el método de fábrica que devuelve nuevos objetos de producto. Es importante que el tipo de retorno de este método coincida con la interfaz del producto.
+4.  Los **Creadores Concretos** anulan el método de fábrica base para que devuelva un tipo diferente de producto.
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el Factory Method cuando no sepas de antemano los tipos y dependencias exactos de los objetos con los que tu código debe funcionar.**
+*   **Usa el Factory Method cuando quieras proporcionar a los usuarios de tu biblioteca o framework una forma de extender sus componentes internos.**
+*   **Usa el Factory Method cuando quieras ahorrar recursos del sistema reutilizando objetos existentes en lugar de reconstruirlos cada vez.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Evitas un acoplamiento estrecho entre el creador y los productos concretos.
+*   *Principio de Responsabilidad Única*. Puedes mover el código de creación del producto a un solo lugar, lo que hace que el código sea más fácil de mantener.
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevos tipos de productos en el programa sin romper el código cliente existente.
+
+#### Contras
+
+*   El código puede volverse más complicado ya que necesitas introducir una gran cantidad de nuevas subclases para implementar el patrón. El mejor de los casos es cuando estás introduciendo el patrón en una jerarquía existente de clases creadoras.
