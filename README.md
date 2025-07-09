@@ -1,4 +1,4 @@
-# typescript-design-patterns-
+# Typescript Design Patterns
 Creational, Structural and Behavior patterns with typescript
 
 ## Patrones Creacionales
