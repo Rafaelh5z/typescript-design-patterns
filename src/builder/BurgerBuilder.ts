@@ -1,5 +1,6 @@
+import { Burger } from './Burger'
 
-class BurgerBuilder {
+export class BurgerBuilder {
 
     private name: string
     private cheese: boolean = false

@@ -1,5 +1,10 @@
+import { Chair } from './Chair'
+import { FurnitureFactory } from './FurnitureFactory'
+import { ModernChair } from './ModernChair'
+import { ModernTable } from './ModernTable'
+import { Table } from './Table'
 
-class ModernFurnitureFactory extends FurnitureFactory {
+export class ModernFurnitureFactory extends FurnitureFactory {
 
     createChair(): Chair {
         return new ModernChair()

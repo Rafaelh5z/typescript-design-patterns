@@ -1,4 +1,4 @@
-abstract class Furniture {
+export abstract class Furniture {
 
     public abstract assemble(): void
 }

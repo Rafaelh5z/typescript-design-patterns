@@ -1,3 +1,5 @@
+import { ConcreteFurnitureFactory } from './ConcreteFurnitureFactory'
+
 function factoryClient() {
 
     const factory = new ConcreteFurnitureFactory()

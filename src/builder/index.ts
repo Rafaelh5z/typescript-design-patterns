@@ -1,3 +1,5 @@
+import { BurgerBuilder } from './BurgerBuilder'
+
 function builderClient() {
 
     const everythingBurgerBuilder = new BurgerBuilder('Everything')

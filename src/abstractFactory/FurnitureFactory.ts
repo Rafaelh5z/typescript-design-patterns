@@ -1,4 +1,4 @@
-abstract class FurnitureFactory {
+export abstract class FurnitureFactory {
     
     abstract createChair(): Chair
     abstract createTable(): Table

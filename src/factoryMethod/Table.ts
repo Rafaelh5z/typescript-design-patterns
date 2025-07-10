@@ -1,5 +1,5 @@
 
-class Table extends Furniture {
+export class Table extends Furniture {
     
     public assemble(): void {
     

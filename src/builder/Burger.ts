@@ -1,5 +1,5 @@
 
-class Burger {
+export class Burger {
 
     constructor(private name: string, private cheese: boolean, private bacon: boolean, private lettuce: boolean, private tomato: boolean) {
         this.name = name

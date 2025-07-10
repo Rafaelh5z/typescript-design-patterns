@@ -1,5 +1,9 @@
+import { Chair } from './Chair'
+import { Furniture } from './Furniture'
+import { FurnitureFactory } from './FurnitureFactory'
+import { Table } from './Table'
 
-class ConcreteFurnitureFactory extends FurnitureFactory {
+export class ConcreteFurnitureFactory extends FurnitureFactory {
 
     public createFurniture(type: string): Furniture {
 

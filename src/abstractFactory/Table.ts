@@ -1,4 +1,4 @@
-abstract class Table {
+export abstract class Table {
     
     abstract eatOn(): void
 }
