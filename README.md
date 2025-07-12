@@ -218,6 +218,8 @@ Un objeto que admite la clonación se llama *prototipo*. Cuando tus objetos tien
 2.  La clase **Prototipo Concreto** implementa el método de clonación. Además de copiar los datos del objeto original al clon, este método también puede manejar algunos casos extremos del proceso de clonación, como clonar objetos vinculados, desenredar dependencias recursivas, etc.
 3.  El **Cliente** puede producir una copia de cualquier objeto que siga la interfaz del prototipo.
 
+![Estructura del Patrón Prototype](assets/documentation/prototype.png)
+
 ### ¿Cuándo utilizarlo?
 
 *   **Usa el patrón Prototype cuando tu código no deba depender de las clases concretas de los objetos que necesitas copiar.**
