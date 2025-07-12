@@ -432,3 +432,59 @@ La mayor ventaja de este enfoque es que no necesitas preocuparte por las clases 
 #### Contras
 
 *   Puede ser difícil proporcionar una interfaz común para clases que tienen funcionalidades muy diferentes. En ciertos escenarios, tendrías que generalizar en exceso la interfaz del componente, lo que la haría más difícil de comprender.
+
+---
+
+## Patrón de Diseño Decorator (Decorador)
+
+**Decorator** es un patrón de diseño estructural que te permite añadir nuevas funcionalidades a un objeto colocando estos objetos dentro de "envoltorios" especiales que contienen las funcionalidades.
+
+### Problema que resuelve
+
+Imagina que estás trabajando en una biblioteca de notificaciones que permite a otras aplicaciones notificar a sus usuarios sobre eventos importantes.
+
+La versión inicial de la biblioteca solo tenía la clase `Notificador` que enviaba alertas de texto simples a una lista de correos electrónicos que el cliente proporcionaba.
+
+En algún momento, te das cuenta de que los usuarios de la biblioteca querrían más que solo notificaciones por correo electrónico. Muchos de ellos querrían recibir notificaciones por SMS. Otros querrían recibir notificaciones de Facebook. Y, por supuesto, hay gente que querría recibir notificaciones de Slack.
+
+¿Cómo implementarías esto? Podrías crear subclases para cada tipo de notificación, como `NotificadorSMS`, `NotificadorFacebook`, etc. Pero este enfoque tiene un gran problema: si un usuario quiere recibir notificaciones de varios tipos a la vez, tendrías que crear subclases combinadas como `NotificadorFacebookSMS`. Esto llevaría a una explosión de clases.
+
+### ¿Cómo funciona?
+
+El patrón Decorator te permite envolver un objeto con otros objetos que "decoran" el objeto original con nuevas funcionalidades.
+
+El patrón sugiere que crees una interfaz `Componente` y que tanto el objeto original como los decoradores la implementen. El cliente puede entonces trabajar con todos los objetos a través de esta interfaz.
+
+Un decorador es un objeto que envuelve a otro objeto. El decorador implementa la misma interfaz que el objeto que envuelve. El decorador delega todo el trabajo al objeto envuelto, pero también puede añadir algo propio antes o después de la delegación.
+
+Puedes envolver un objeto en múltiples capas de decoradores.
+
+### Estructura
+
+1.  La interfaz **Componente** declara la interfaz común tanto para los envoltorios como para los objetos envueltos.
+2.  El **Componente Concreto** es la clase de objetos que se envuelven. Define el comportamiento básico, que puede ser alterado por los decoradores.
+3.  La clase **Decorador Base** tiene un campo para referenciar un objeto envuelto. El tipo del campo debe ser la interfaz del componente para que pueda contener tanto componentes concretos como decoradores. El decorador base delega todo el trabajo al objeto envuelto.
+4.  Los **Decoradores Concretos** definen funcionalidades adicionales que se pueden añadir a los componentes dinámicamente. Los decoradores concretos sobrescriben los métodos del decorador base y ejecutan su comportamiento antes o después de llamar al método padre.
+5.  El **Cliente** puede envolver componentes en múltiples capas de decoradores, siempre que trabaje con todos los objetos a través de la interfaz del componente.
+
+![Estructura del Patrón Decorator](assets/documentation/decorator.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Decorator cuando necesites poder asignar responsabilidades adicionales a los objetos en tiempo de ejecución sin romper el código que utiliza estos objetos.**
+*   **Usa el patrón cuando no sea posible o sea inconveniente extender el comportamiento de un objeto mediante la herencia.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes extender el comportamiento de un objeto sin hacer una nueva subclase.
+*   Puedes añadir o quitar responsabilidades de un objeto en tiempo de ejecución.
+*   Puedes combinar varias responsabilidades envolviendo un objeto con varios decoradores.
+*   *Principio de Responsabilidad Única*. Puedes dividir una clase monolítica que implementa muchas variantes de comportamiento en varias clases más pequeñas.
+
+#### Contras
+
+*   Puede ser difícil eliminar un envoltorio específico de la pila de envoltorios.
+*   Puede ser difícil implementar un decorador de tal manera que su comportamiento no dependa del orden en la pila de decoradores.
+*   La configuración inicial del código puede ser complicada, ya que necesitas introducir muchas clases pequeñas nuevas.
