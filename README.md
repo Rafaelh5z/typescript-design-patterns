@@ -385,3 +385,50 @@ Existen dos formas principales de implementar el patrón Adapter:
 #### Contras
 
 *   La complejidad general del código aumenta, ya que necesitas introducir un conjunto de nuevas interfaces y clases. A veces es más sencillo cambiar la clase de servicio para que coincida con el resto de tu código.
+
+---
+
+## Patrón de Diseño Composite (Compuesto)
+
+**Composite** es un patrón de diseño estructural que te permite componer objetos en estructuras de árbol y luego trabajar con estas estructuras como si fueran objetos individuales.
+
+### Problema que resuelve
+
+Imagina que tienes dos tipos de objetos: `Productos` y `Cajas`. Una `Caja` puede contener varios `Productos`, así como otras `Cajas`. Estas pequeñas `Cajas` también pueden contener algunos `Productos` o incluso `Cajas` más pequeñas, y así sucesivamente.
+
+Digamos que decides crear un sistema de pedidos. Los pedidos podrían contener tanto productos simples sin empaquetar como cajas llenas de productos. ¿Cómo calcularías el precio total de dicho pedido?
+
+Tendrías que desenvolver todas las cajas, sumar los precios de todos los productos y luego sumar los precios de las cajas. Sería un código muy complicado y propenso a errores, ya que tendrías que conocer las clases concretas de los objetos con los que trabajas.
+
+### ¿Cómo funciona?
+
+El patrón Composite sugiere que trabajes con `Productos` y `Cajas` a través de una interfaz común que declara un método para calcular el precio total.
+
+Este método sería simple para un producto, simplemente devolvería su propio precio. Pero para una caja, iría a través de cada artículo que contiene, le preguntaría su precio y luego devolvería el total de esta caja. Si uno de los artículos es otra caja, esta caja también comenzaría a recorrer su propio contenido y así sucesivamente, hasta que se calculen los precios de todos los componentes.
+
+La mayor ventaja de este enfoque es que no necesitas preocuparte por las clases concretas de los objetos que componen un árbol. No necesitas saber si un objeto es un producto simple o una caja compleja. Puedes tratarlos a todos por igual a través de la interfaz común.
+
+### Estructura
+
+1.  La interfaz **Componente** describe las operaciones que son comunes tanto para los elementos simples como para los complejos del árbol.
+2.  La **Hoja (Leaf)** es un elemento básico de un árbol que no tiene sub-elementos. La mayoría de las veces, los componentes hoja son los que hacen el trabajo real, ya que no tienen a nadie a quien delegar el trabajo.
+3.  El **Contenedor (Composite)** es un elemento que tiene sub-elementos: hojas u otros contenedores. Un contenedor no conoce las clases concretas de sus hijos. Funciona con todos los sub-elementos solo a través de la interfaz del componente.
+4.  El **Cliente** trabaja con todos los elementos a través de la interfaz del componente.
+
+![Estructura del Patrón Composite](assets/documentation/composite.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Composite cuando tengas que implementar una estructura de objetos con forma de árbol.**
+*   **Usa el patrón cuando quieras que el código cliente trate de la misma manera tanto a los objetos simples como a los complejos.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes trabajar con estructuras de árbol complejas de forma más conveniente: usa polimorfismo y recursividad a tu favor.
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevos tipos de elementos en la aplicación sin romper el código existente que trabaja con el árbol.
+
+#### Contras
+
+*   Puede ser difícil proporcionar una interfaz común para clases que tienen funcionalidades muy diferentes. En ciertos escenarios, tendrías que generalizar en exceso la interfaz del componente, lo que la haría más difícil de comprender.
