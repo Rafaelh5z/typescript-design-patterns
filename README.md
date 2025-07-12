@@ -237,3 +237,60 @@ Un objeto que admite la clonación se llama *prototipo*. Cuando tus objetos tien
 #### Contras
 
 *   Clonar objetos complejos que tienen referencias circulares puede ser muy complicado.
+
+---
+
+## Patrón de Diseño Singleton (Instancia Única)
+
+**Singleton** es un patrón de diseño creacional que te permite asegurarte de que una clase tenga una sola instancia, a la vez que proporciona un punto de acceso global a esta instancia.
+
+### Problema que resuelve
+
+El patrón Singleton resuelve dos problemas a la vez, violando el *Principio de Responsabilidad Única*:
+
+1.  **Asegurar que una clase tenga una sola instancia**. ¿Por qué querría alguien controlar cuántas instancias tiene una clase? La razón más común para esto es controlar el acceso a algún recurso compartido, por ejemplo, una base de datos o un archivo.
+
+    Funciona así: imagina que creaste un objeto, pero después de un tiempo, decides crear uno nuevo. En lugar de recibir un objeto nuevo, obtendrás el que ya creaste.
+
+    Ten en cuenta que este comportamiento es imposible de implementar con un constructor normal, ya que una llamada al constructor siempre debe devolver un nuevo objeto por diseño.
+
+2.  **Proporcionar un punto de acceso global a esa instancia**. ¿Recuerdas esas variables globales que usabas para almacenar algunos objetos esenciales? Si bien son muy útiles, también son muy inseguras, ya que cualquier código puede sobrescribir el contenido de esas variables y bloquear la aplicación.
+
+    Al igual que una variable global, el patrón Singleton te permite acceder a algún objeto desde cualquier parte del programa. Sin embargo, también protege esa instancia de ser sobrescrita por otro código.
+
+### ¿Cómo funciona?
+
+Todos las implementaciones del Singleton tienen estos dos pasos en común:
+
+*   Hacer que el constructor predeterminado sea privado, para evitar que otros objetos usen el operador `new` con la clase Singleton.
+*   Crear un método de creación estático que actúe como constructor. Este método llama al constructor privado para crear un objeto y lo guarda en un campo estático. Todas las siguientes llamadas a este método devuelven el objeto en caché.
+
+Si tu código tiene acceso a la clase Singleton, entonces puede llamar al método estático de la Singleton. Entonces, cada vez que se llame a ese método, siempre se devolverá el mismo objeto.
+
+### Estructura
+
+![Estructura del Patrón Singleton](assets/documentation/singleton.png)
+
+La clase **Singleton** declara el método estático `getInstance` que devuelve la misma instancia de su propia clase.
+
+El constructor del Singleton debe estar oculto para el código cliente. La llamada al método `getInstance` debe ser la única forma de obtener el objeto Singleton.
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Singleton cuando una clase en tu programa deba tener una sola instancia disponible para todos los clientes; por ejemplo, un único objeto de base de datos compartido por diferentes partes del programa.**
+*   **Usa el patrón Singleton cuando necesites un control más estricto sobre las variables globales.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes estar seguro de que una clase tiene una sola instancia.
+*   Obtienes un punto de acceso global a esa instancia.
+*   El objeto singleton se inicializa solo cuando se solicita por primera vez.
+
+#### Contras
+
+*   Viola el *Principio de Responsabilidad Única*. El patrón resuelve dos problemas a la vez.
+*   El patrón Singleton puede enmascarar un mal diseño, por ejemplo, cuando los componentes del programa saben demasiado unos de otros.
+*   El patrón requiere un tratamiento especial en un entorno de subprocesos múltiples para que varios subprocesos no puedan crear un objeto singleton varias veces.
+*   Puede ser difícil realizar una prueba unitaria del código cliente del Singleton porque muchos frameworks de prueba dependen de la herencia al producir objetos simulados. Como el constructor de la clase singleton es privado y la anulación de métodos estáticos es imposible en la mayoría de los lenguajes, necesitarás una forma creativa de simular el singleton. O simplemente no escribas las pruebas. O no uses el patrón Singleton.
