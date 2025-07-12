@@ -189,3 +189,49 @@ El código cliente tiene que trabajar con fábricas y productos a través de sus
 #### Contras
 
 *   El código puede volverse más complicado de lo que debería, ya que se introducen muchas interfaces y clases nuevas junto con el patrón.
+
+---
+
+## Patrón de Diseño Prototype (Prototipo)
+
+**Prototype** es un patrón de diseño creacional que te permite copiar objetos existentes sin que tu código dependa de sus clases.
+
+### Problema que resuelve
+
+Digamos que tienes un objeto y quieres crear una copia exacta de él. ¿Cómo lo harías? Primero, tendrías que crear un nuevo objeto de la misma clase. Luego, tendrías que recorrer todos los campos del objeto original y copiar sus valores en el nuevo objeto.
+
+¡Bonito! Pero hay una trampa. No todos los objetos se pueden copiar de esa manera, porque algunos de los campos del objeto pueden ser privados y no ser visibles desde fuera del propio objeto.
+
+Hay otro problema con el enfoque directo. Como debes conocer la clase del objeto para crear un duplicado, tu código se vuelve dependiente de esa clase. Si la dependencia es aceptable, no hay problema. Sin embargo, en muchos casos, solo tienes una referencia a un objeto a través de una interfaz, y no conoces su clase concreta.
+
+### ¿Cómo funciona?
+
+El patrón Prototype delega el proceso de clonación a los propios objetos que se están clonando. El patrón declara una interfaz común para todos los objetos que admiten la clonación. Esta interfaz te permite clonar un objeto sin acoplar tu código a la clase de ese objeto. Por lo general, dicha interfaz contiene un único método `clonar`.
+
+La implementación del método `clonar` es muy similar en todas las clases. El método crea un objeto de la clase actual y transfiere los valores de todos los campos del objeto antiguo al nuevo. Incluso puedes copiar campos privados, porque la mayoría de los lenguajes de programación permiten que los objetos accedan a los campos privados de otros objetos que pertenecen a la misma clase.
+
+Un objeto que admite la clonación se llama *prototipo*. Cuando tus objetos tienen docenas de campos y cientos de configuraciones posibles, clonarlos puede servir como una alternativa a la creación de subclases.
+
+### Estructura
+
+1.  La interfaz **Prototipo** declara los métodos de clonación. En la mayoría de los casos, es un único método `clonar`.
+2.  La clase **Prototipo Concreto** implementa el método de clonación. Además de copiar los datos del objeto original al clon, este método también puede manejar algunos casos extremos del proceso de clonación, como clonar objetos vinculados, desenredar dependencias recursivas, etc.
+3.  El **Cliente** puede producir una copia de cualquier objeto que siga la interfaz del prototipo.
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Prototype cuando tu código no deba depender de las clases concretas de los objetos que necesitas copiar.**
+*   **Usa el patrón cuando quieras reducir el número de subclases que solo se diferencian en la forma en que inicializan sus respectivos objetos.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes clonar objetos sin acoplarte a sus clases concretas.
+*   Puedes deshacerte del código de inicialización repetido en favor de la clonación de prototipos pre-construidos.
+*   Puedes producir objetos complejos de forma más conveniente.
+*   Obtienes una alternativa a la herencia cuando se trata de preajustes de configuración para objetos complejos.
+
+#### Contras
+
+*   Clonar objetos complejos que tienen referencias circulares puede ser muy complicado.
