@@ -334,3 +334,54 @@ El constructor del Singleton debe estar oculto para el código cliente. La llama
 *   Puede ser difícil realizar una prueba unitaria del código cliente del Singleton porque muchos frameworks de prueba dependen de la herencia al producir objetos simulados. Como el constructor de la clase singleton es privado y la anulación de métodos estáticos es imposible en la mayoría de los lenguajes, necesitarás una forma creativa de simular el singleton. O simplemente no escribas las pruebas. O no uses el patrón Singleton.
 
 ---
+
+## Patrón de Diseño Adapter (Adaptador)
+
+**Adapter** es un patrón de diseño estructural que permite la colaboración entre objetos con interfaces incompatibles.
+
+### Problema que resuelve
+
+Imagina que estás creando una aplicación de monitoreo de mercado bursátil. La aplicación descarga los datos del mercado de múltiples fuentes en formato XML y luego muestra gráficos y diagramas bonitos a los usuarios.
+
+En algún momento, decides mejorar la aplicación integrando una biblioteca de análisis de terceros. Pero hay un problema: la biblioteca solo funciona con datos en formato JSON.
+
+No puedes simplemente cambiar el código de la biblioteca. Y tampoco quieres reescribir todo tu código que trabaja con el formato XML. Entonces, ¿qué puedes hacer?
+
+### ¿Cómo funciona?
+
+Puedes crear un adaptador. Este es un objeto especial que convierte la interfaz de un objeto para que otro objeto pueda entenderla.
+
+Un adaptador envuelve uno de los objetos para ocultar la complejidad de la conversión que ocurre detrás de escena. El objeto envuelto ni siquiera es consciente del adaptador. Por ejemplo, puedes envolver un objeto que opera en metros y kilómetros con un adaptador que convierte todos los datos a unidades imperiales como pies y millas.
+
+Los adaptadores no solo pueden convertir datos a varios formatos, sino que también pueden ayudar a objetos con diferentes interfaces a colaborar.
+
+### Estructura
+
+1.  El **Cliente** es la clase que contiene la lógica de negocio existente del programa.
+2.  La **Interfaz del Cliente** describe un protocolo que otras clases deben seguir para poder colaborar con el código cliente.
+3.  El **Servicio** es alguna clase útil (normalmente de terceros o heredada). El cliente no puede usar esta clase directamente porque tiene una interfaz incompatible.
+4.  El **Adaptador** es una clase que puede trabajar tanto con el cliente como con el servicio: implementa la interfaz del cliente, mientras que envuelve el objeto de servicio. El adaptador recibe llamadas del cliente a través de la interfaz del adaptador y las traduce en llamadas al objeto de servicio envuelto en un formato que pueda entender.
+5.  El código cliente no se acopla a la clase adaptadora concreta siempre que trabaje con el adaptador a través de la interfaz del cliente. Gracias a esto, puedes introducir nuevos tipos de adaptadores en el programa sin romper el código cliente existente.
+
+![Estructura del Patrón Adapter](assets/documentation/adapter.png)
+
+Existen dos formas principales de implementar el patrón Adapter:
+
+-   **Adaptador de Objeto (Object Adapter):** Esta implementación utiliza la composición de objetos. El adaptador contiene una instancia del servicio (el objeto que se adapta). Las llamadas del cliente al adaptador se traducen en llamadas a los métodos del objeto de servicio envuelto. Esta es la forma más común y flexible, especialmente en lenguajes que no soportan la herencia múltiple de clases como TypeScript.
+-   **Adaptador de Clase (Class Adapter):** Esta implementación utiliza la herencia. El adaptador hereda de la clase del cliente (o implementa su interfaz) y también de la clase del servicio. Esta opción solo es posible en lenguajes que admiten herencia múltiple de clases.
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Adapter cuando quieras usar una clase existente, pero su interfaz no sea compatible con el resto de tu código.**
+*   **Usa el patrón cuando quieras reutilizar varias subclases existentes que carecen de alguna funcionalidad común que no se puede agregar a la superclase.**
+
+### Pros y Contras
+
+#### Pros
+
+*   *Principio de Responsabilidad Única*. Puedes separar la conversión de la interfaz o de los datos de la lógica de negocio principal del programa.
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevos tipos de adaptadores en el programa sin romper el código cliente existente, siempre que trabajen con los adaptadores a través de la interfaz del cliente.
+
+#### Contras
+
+*   La complejidad general del código aumenta, ya que necesitas introducir un conjunto de nuevas interfaces y clases. A veces es más sencillo cambiar la clase de servicio para que coincida con el resto de tu código.
