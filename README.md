@@ -12,9 +12,23 @@ Algunos de los patrones creacionales más comunes son:
 - **Singleton:** Asegura que una clase solo tenga una única instancia y proporciona un punto de acceso global a ella.
 - **Prototype:** Permite copiar objetos existentes sin que el código dependa de sus clases.
 
+## Diferencias Clave: Creacionales vs. Estructurales
+
+Aunque ambos tipos de patrones de diseño ayudan a crear sistemas robustos y mantenibles, se centran en aspectos diferentes del diseño de software:
+
+- **Propósito:**
+    - **Creacionales:** Se enfocan en el **proceso de creación de objetos**. Su objetivo es proporcionar mecanismos de instanciación que aumentan la flexibilidad y la reutilización del código. Se preocupan por el *qué* y el *cómo* se crea un objeto.
+    - **Estructurales:** Se enfocan en la **composición de clases y objetos**. Su objetivo es organizar diferentes clases y objetos para formar estructuras más grandes y proporcionar nuevas funcionalidades. Se preocupan por *cómo se relacionan* las entidades entre sí.
+
+- **Enfoque:**
+    - **Creacionales:** Desacoplan el código cliente de las clases concretas que necesita instanciar.
+    - **Estructurales:** Describen cómo los objetos y las clases pueden combinarse para formar una estructura más grande y compleja.
+
+En resumen, los patrones creacionales se ocupan de la creación de objetos, mientras que los patrones estructurales se ocupan de la estructura de los objetos.
+
 ## Patrones Estructurales
 
-Estos patrones se ocupan de la composición de clases y objetos para formar estructuras más grandes y complejas. Facilitan el diseño al identificar una forma sencilla de realizar relaciones entre entidades, asegurando que si una parte del sistema cambia, el sistema entero no necesite hacerlo.
+Estos patrones explican cómo ensamblar objetos y clases en estructuras más grandes, manteniendo la flexibilidad y eficiencia de la estructura. Se centran en cómo las clases y los objetos se componen para formar estructuras más grandes y complejas, utilizando la herencia y la composición para construir estas estructuras y proporcionar nuevas funcionalidades.
 
 Algunos de los patrones estructurales más comunes son:
 - **Adapter:** Permite la colaboración entre objetos con interfaces incompatibles.
@@ -40,6 +54,30 @@ Algunos de los patrones de comportamiento más comunes son:
 - **Strategy:** Permite definir una familia de algoritmos, colocar cada uno de ellos en una clase separada y hacer que sus objetos sean intercambiables.
 - **Template Method:** Define el esqueleto de un algoritmo en la superclase pero deja que las subclases sobrescriban pasos específicos del algoritmo sin cambiar su estructura.
 - **Visitor:** Permite separar algoritmos de los objetos sobre los que operan.
+
+### Diferencias Clave: Creacionales, Estructurales y de Comportamiento
+
+Para resumir, aquí tienes una comparación directa de los tres tipos de patrones de diseño:
+
+-   **Patrones Creacionales:**
+    -   **Propósito:** Se centran en la **creación de objetos**.
+    -   **Enfoque:** Proporcionan mecanismos de instanciación flexibles que desacoplan el código cliente de las clases concretas.
+    -   **Ejemplo:** En lugar de `new Objeto()`, usas una fábrica o un constructor para obtener un objeto.
+
+-   **Patrones Estructurales:**
+    -   **Propósito:** Se centran en la **composición de objetos y clases**.
+    -   **Enfoque:** Organizan diferentes clases y objetos para formar estructuras más grandes y proporcionar nuevas funcionalidades.
+    -   **Ejemplo:** Unir dos interfaces incompatibles con un Adaptador o construir una estructura de árbol con Composite.
+
+-   **Patrones de Comportamiento:**
+    -   **Propósito:** Se centran en la **comunicación entre objetos**.
+    -   **Enfoque:** Definen cómo los objetos colaboran y se asignan responsabilidades para realizar una tarea.
+    -   **Ejemplo:** Permitir que un objeto notifique a otros sobre cambios (Observer) o encapsular una acción en un objeto (Command).
+
+En esencia:
+-   **Creacionales** -> Cómo se **crean** los objetos.
+-   **Estructurales** -> Cómo se **estructuran** los objetos.
+-   **De Comportamiento** -> Cómo **interactúan** los objetos.
 
 ---
 
@@ -294,3 +332,5 @@ El constructor del Singleton debe estar oculto para el código cliente. La llama
 *   El patrón Singleton puede enmascarar un mal diseño, por ejemplo, cuando los componentes del programa saben demasiado unos de otros.
 *   El patrón requiere un tratamiento especial en un entorno de subprocesos múltiples para que varios subprocesos no puedan crear un objeto singleton varias veces.
 *   Puede ser difícil realizar una prueba unitaria del código cliente del Singleton porque muchos frameworks de prueba dependen de la herencia al producir objetos simulados. Como el constructor de la clase singleton es privado y la anulación de métodos estáticos es imposible en la mayoría de los lenguajes, necesitarás una forma creativa de simular el singleton. O simplemente no escribas las pruebas. O no uses el patrón Singleton.
+
+---
