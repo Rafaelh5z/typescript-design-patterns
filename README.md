@@ -14,32 +14,69 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 ### Beneficios de usar Patrones de Diseño:
 - ✅ **Reutilización de código**: Soluciones probadas y documentadas
 - ✅ **Comunicación mejorada**: Vocabulario común entre desarrolladores  
-- ✅ **Mejores prácticas**: Código más mantenible y escalable
+- ✅ **Mejores prácticas**: Código más mantenibles y escalable
 - ✅ **Resolución de problemas**: Enfoques estructurados para desafíos comunes
 
 ## 📋 Índice
 
-### Patrones Creacionales
-*   [Builder](#patrón-de-diseño-builder-constructor)
-*   [Factory Method](#patrón-de-diseño-factory-method-método-fábrica)
-*   [Abstract Factory](#patrón-de-diseño-abstract-factory-fábrica-abstracta)
-*   [Prototype](#patrón-de-diseño-prototype-prototipo)
-*   [Singleton](#patrón-de-diseño-singleton)
+### 🏛️ Fundamentos
+- [¿Qué son los Patrones de Diseño?](#-qué-son-los-patrones-de-diseño)
+- [Principios SOLID](#-principios-solid)
+- [Tipos de Patrones de Diseño](#-tipos-de-patrones-de-diseño)
+- [Cuándo usar Patrones de Diseño](#-cuándo-usar-patrones-de-diseño)
+- [Cuándo NO usar Patrones de Diseño](#-cuándo-no-usar-patrones-de-diseño)
 
-### Patrones Estructurales
-*   [Adapter](#patrón-de-diseño-adapter-adaptador)
-*   [Composite](#patrón-de-diseño-composite-compuesto)
-*   [Decorator](#patrón-de-diseño-decorator-decorador)
-*   [Facade](#patrón-de-diseño-facade-fachada)
+### 🔧 Configuración del Proyecto
+- [Instalación y Configuración](#️-instalación-y-configuración)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Comandos Disponibles](#-comandos-disponibles)
+- [Tests y Cobertura](#-tests-y-cobertura)
 
-### Patrones de Comportamiento
-*   [Iterator](#patrón-de-diseño-iterator-iterador)
-*   [State](#patrón-de-diseño-state-estado)
-*   [Template Method](#patrón-de-diseño-template-method-método-plantilla)
-*   [Command](#patrón-de-diseño-command-comando)
-*   [Mediator](#patrón-de-diseño-mediator-mediador)
-*   [Observer](#patrón-de-diseño-observer-observador)
-*   [Strategy](#patrón-de-diseño-strategy-estrategia)
+### 🏗️ Patrones Creacionales
+**Enfoque**: *Creación de objetos de manera flexible y desacoplada*
+- [Introducción a Patrones Creacionales](#-patrones-creacionales)
+- [Abstract Factory](#patrón-de-diseño-abstract-factory-fábrica-abstracta) - Familias de objetos relacionados
+- [Builder](#patrón-de-diseño-builder-constructor) - Construcción paso a paso
+- [Factory Method](#patrón-de-diseño-factory-method-método-fábrica) - Creación mediante interfaz común
+- [Prototype](#patrón-de-diseño-prototype-prototipo) - Clonación de objetos
+- [Singleton](#patrón-de-diseño-singleton) - Instancia única global
+
+### 🏢 Patrones Estructurales
+**Enfoque**: *Composición de objetos y clases para formar estructuras más grandes*
+- [Introducción a Patrones Estructurales](#-patrones-estructurales)
+- [Adapter](#patrón-de-diseño-adapter-adaptador) - Compatibilidad entre interfaces
+- [Composite](#patrón-de-diseño-composite-compuesto) - Estructuras jerárquicas
+- [Decorator](#patrón-de-diseño-decorator-decorador) - Extensión de funcionalidad
+- [Facade](#patrón-de-diseño-facade-fachada) - Interfaz simplificada
+
+### 🎭 Patrones de Comportamiento
+**Enfoque**: *Comunicación entre objetos y asignación de responsabilidades*
+- [Introducción a Patrones de Comportamiento](#-patrones-de-comportamiento)
+- [Command](#patrón-de-diseño-command-comando) - Encapsulación de operaciones
+- [Iterator](#patrón-de-diseño-iterator-iterador) - Acceso secuencial a elementos
+- [Mediator](#patrón-de-diseño-mediator-mediador) - Comunicación centralizada
+- [Observer](#patrón-de-diseño-observer-observador) - Notificaciones automáticas
+- [State](#patrón-de-diseño-state-estado) - Comportamiento basado en estado
+- [Strategy](#patrón-de-diseño-strategy-estrategia) - Algoritmos intercambiables
+- [Template Method](#patrón-de-diseño-template-method-método-plantilla) - Esqueleto de algoritmo
+
+### 📊 Análisis Comparativo
+- [Comparativa de Tipos de Patrones](#-comparativa-de-tipos-de-patrones)
+- [Relaciones entre Patrones](#-relaciones-entre-patrones)
+- [Patrones que se Complementan](#-patrones-que-se-complementan)
+- [Antipatrones Comunes](#-antipatrones-comunes)
+
+### 🎯 Guías Prácticas
+- [Mejores Prácticas](#-mejores-prácticas)
+- [Casos de Uso Reales](#-casos-de-uso-reales)
+- [Patrones en Frameworks Populares](#-patrones-en-frameworks-populares)
+- [Refactoring con Patrones](#-refactoring-con-patrones)
+
+### 📚 Recursos Adicionales
+- [Referencias y Lecturas](#-referencias-y-lecturas)
+- [Contribución al Proyecto](#-contribución)
+- [Roadmap](#-roadmap)
+- [FAQ](#-preguntas-frecuentes)
 
 ---
 
@@ -68,29 +105,362 @@ npm run build
 npm run start
 ```
 
+### 📋 Comandos Disponibles
+
+```bash
+# Desarrollo
+npm run dev          # Compilación en modo watch
+npm run build        # Compilar proyecto completo
+npm run start        # Ejecutar ejemplos compilados
+
+# Testing
+npm test             # Ejecutar tests
+npm run test:watch   # Tests en modo watch
+npm run test:coverage # Generar reporte de cobertura
+
+# Calidad de código
+npm run lint         # Revisar código con ESLint
+npm run lint:fix     # Corregir problemas automáticamente
+npm run clean        # Limpiar directorio dist
+```
+
+### 🧪 Tests y Cobertura
+
+Este proyecto incluye una suite completa de tests unitarios:
+- **204 tests** cubriendo todos los patrones
+- **16 test suites** organizados por patrón
+- **Cobertura completa** de funcionalidad y casos edge
+- **Tests de integración** para verificar interacciones
+
+---
+
+## 🏗️ Principios SOLID
+
+Los patrones de diseño están fuertemente relacionados con los principios SOLID:
+
+| Principio | Descripción | Patrones Relacionados |
+|-----------|-------------|----------------------|
+| **S** - Single Responsibility | Una clase debe tener una sola razón para cambiar | Command, Factory Method |
+| **O** - Open/Closed | Abierto para extensión, cerrado para modificación | Strategy, Observer, Decorator |
+| **L** - Liskov Substitution | Los objetos deben ser reemplazables por instancias de sus subtipos | Template Method, Factory Method |
+| **I** - Interface Segregation | Muchas interfaces específicas son mejores que una general | Adapter, Facade |
+| **D** - Dependency Inversion | Depender de abstracciones, no de concreciones | Abstract Factory, Builder |
+
+---
+
+## 🎯 Tipos de Patrones de Diseño
+
+### 🏗️ Patrones Creacionales
+**Propósito**: Abstraen el proceso de creación de objetos
+- **Problema que resuelven**: Complejidad en la instanciación de objetos
+- **Beneficio clave**: Flexibilidad en la creación y configuración
+- **Casos de uso**: Configuración compleja, familias de objetos, instancias únicas
+
+### 🏢 Patrones Estructurales  
+**Propósito**: Componen objetos y clases en estructuras más grandes
+- **Problema que resuelven**: Incompatibilidades entre interfaces y estructuras rígidas
+- **Beneficio clave**: Flexibilidad en la composición y organización
+- **Casos de uso**: Adaptación de interfaces, jerarquías complejas, funcionalidad extendida
+
+### 🎭 Patrones de Comportamiento
+**Propósito**: Gestionan algoritmos y responsabilidades entre objetos  
+- **Problema que resuelven**: Comunicación compleja y responsabilidades poco claras
+- **Beneficio clave**: Flexibilidad en algoritmos y comunicación
+- **Casos de uso**: Cambios de comportamiento, notificaciones, procesamientos complejos
+
+---
+
+## ✅ Cuándo usar Patrones de Diseño
+
+### 🟢 Úsalos cuando:
+- **Tienes problemas recurrentes** en tu diseño de software
+- **Necesitas flexibilidad** para cambios futuros
+- **El código se está volviendo complejo** y difícil de mantener
+- **Trabajas en equipo** y necesitas un vocabulario común
+- **Quieres seguir mejores prácticas** establecidas en la industria
+
+### 🔴 NO los uses cuando:
+- **El problema es simple** y no necesita abstracción
+- **Sobreingeniería** - agregar complejidad innecesaria
+- **No hay requisitos claros** de flexibilidad o extensibilidad
+- **El equipo no está familiarizado** con los patrones
+- **Deadline muy ajustado** y la solución simple funciona
+
+---
+
 ## 🎯 Cómo usar este repositorio
 
 Cada patrón incluye:
 - 📖 **Documentación teórica**: Explicación del problema, solución y estructura
-- 💻 **Implementación práctica**: Código TypeScript comentado
+- 💻 **Implementación práctica**: Código TypeScript
 - 🖼️ **Diagramas UML**: Representación visual del patrón
 - ✨ **Ejemplos de uso**: Casos prácticos de aplicación
+- 🧪 **Tests completos**: Suite de pruebas unitarias e integración
+- 📊 **Métricas de calidad**: Cobertura de código y análisis estático
 
-### Estructura del proyecto
+### 📁 Estructura del Proyecto
 ```
-src/
-├── creationalPatterns/     # Patrones Creacionales
-├── structuralPatterns/     # Patrones Estructurales
-└── behavioralPatterns/     # Patrones de Comportamiento (próximamente)
+typescript-design-patterns/
+├── 📂 src/                          # Código fuente principal
+│   ├── 📂 behavioralPatterns/       # Patrones de Comportamiento
+│   │   ├── 📂 command/              # Patrón Command
+│   │   ├── 📂 iterator/             # Patrón Iterator  
+│   │   ├── 📂 mediator/             # Patrón Mediator
+│   │   ├── 📂 observer/             # Patrón Observer
+│   │   ├── 📂 state/                # Patrón State
+│   │   ├── 📂 strategy/             # Patrón Strategy
+│   │   └── 📂 templateMethod/       # Patrón Template Method
+│   ├── 📂 creationalPatterns/       # Patrones Creacionales
+│   │   ├── 📂 abstractFactory/      # Patrón Abstract Factory
+│   │   ├── 📂 builder/              # Patrón Builder
+│   │   ├── 📂 factoryMethod/        # Patrón Factory Method
+│   │   ├── 📂 prototype/            # Patrón Prototype
+│   │   └── 📂 singleton/            # Patrón Singleton
+│   └── 📂 structuralPatterns/       # Patrones Estructurales
+│       ├── 📂 adapter/              # Patrón Adapter
+│       ├── 📂 composite/            # Patrón Composite
+│       ├── 📂 decorator/            # Patrón Decorator
+│       └── 📂 facade/               # Patrón Facade
+├── 📂 tests/                        # Suite de pruebas
+│   ├── 📂 behavioralPatterns/       # Tests para patrones de comportamiento
+│   ├── 📂 creationalPatterns/       # Tests para patrones creacionales
+│   └── 📂 structuralPatterns/       # Tests para patrones estructurales
+├── 📂 assets/                       # Recursos y documentación
+│   └── 📂 documentation/            # Diagramas UML e imágenes
+├── 📂 dist/                         # Código compilado (generado)
+├── 📄 package.json                  # Configuración del proyecto
+├── 📄 tsconfig.json                 # Configuración de TypeScript
+├── 📄 jest.config.js                # Configuración de tests
+├── 📄 eslint.config.js              # Configuración de linting
+└── 📄 README.md                     # Esta documentación
 ```
+
+### 🎯 Navegación por Patrón
+Cada directorio de patrón contiene:
+- `*.ts` - Implementación principal del patrón
+- `index.ts` - Punto de entrada y ejemplos de uso
+- `*.example` - Archivo con casos de uso prácticos
+- Documentación inline con JSDoc
 
 ## 📊 Comparativa de Tipos de Patrones
 
-| Tipo | Propósito Principal | Enfoque | Cuándo Usar | Ejemplos |
-|------|-------------------|---------|-------------|----------|
-| **Creacionales** | Creación de objetos | Desacoplar la instanciación | Cuando la creación es compleja | Factory, Builder, Singleton |
-| **Estructurales** | Composición de objetos | Organizar relaciones | Cuando necesitas estructuras flexibles | Adapter, Decorator, Facade |
-| **Comportamiento** | Comunicación entre objetos | Algoritmos y responsabilidades | Cuando el comportamiento varía | Observer, Strategy, Command |
+| Aspecto | Creacionales 🏗️ | Estructurales 🏢 | Comportamiento 🎭 |
+|---------|------------------|-------------------|-------------------|
+| **Propósito** | Creación de objetos | Composición de objetos | Comunicación entre objetos |
+| **Enfoque** | Desacoplar instanciación | Organizar relaciones | Algoritmos y responsabilidades |
+| **Problema Principal** | Creación compleja | Interfaces incompatibles | Comunicación compleja |
+| **Flexibilidad** | Creación dinámica | Estructura adaptable | Comportamiento variable |
+| **Cuándo Usar** | Configuración compleja | Estructuras flexibles | Comportamiento cambiante |
+| **Ejemplos Comunes** | Factory, Builder | Adapter, Decorator | Observer, Strategy |
+| **Complejidad** | Media-Alta | Media | Alta |
+| **Acoplamiento** | Reduce acoplamiento | Organiza acoplamiento | Gestiona acoplamiento |
+
+## 🔗 Relaciones entre Patrones
+
+### Patrones que se Complementan
+- **Factory Method + Singleton**: Controlar creación única
+- **Observer + Mediator**: Notificaciones centralizadas  
+- **Strategy + Template Method**: Algoritmos flexibles con estructura fija
+- **Decorator + Composite**: Funcionalidad extendida en estructuras jerárquicas
+- **Builder + Abstract Factory**: Construcción compleja de familias de objetos
+
+### Patrones que Resuelven Problemas Similares
+- **Factory Method vs Abstract Factory**: Uno vs múltiples productos
+- **Strategy vs State**: Algoritmos vs comportamiento basado en estado
+- **Decorator vs Inheritance**: Composición vs herencia para extensibilidad
+- **Facade vs Adapter**: Simplificación vs adaptación de interfaces
+
+## ⚠️ Antipatrones Comunes
+
+### 🚫 God Object (Objeto Dios)
+**Problema**: Una clase que hace demasiado
+**Solución**: Command, Strategy, State para dividir responsabilidades
+
+### 🚫 Spaghetti Code
+**Problema**: Código desestructurado y difícil de seguir  
+**Solución**: Template Method, Chain of Responsibility para estructura clara
+
+### 🚫 Copy-Paste Programming
+**Problema**: Duplicación excesiva de código
+**Solución**: Template Method, Strategy, Factory para reutilización
+
+### 🚫 Hard Coding
+**Problema**: Valores fijos en el código
+**Solución**: Factory, Builder, Strategy para configuración flexible
+
+---
+
+## 🎯 Mejores Prácticas
+
+### ✅ DOs (Recomendaciones)
+- **Usa patrones para resolver problemas reales**, no por el patrón en sí
+- **Combina patrones** cuando sea apropiado y beneficioso
+- **Documenta el uso de patrones** en tu código y arquitectura
+- **Refactoriza hacia patrones** gradualmente, no de una vez
+- **Considera el contexto del equipo** y la complejidad del proyecto
+
+### ❌ DON'Ts (Evitar)
+- **No uses patrones innecesariamente** - pueden agregar complejidad
+- **No fuerces patrones** en soluciones simples
+- **No implementes patrones incorrectamente** - estudia bien antes de usar
+- **No ignores alternativas** - a veces una solución simple es mejor
+- **No uses demasiados patrones juntos** sin una razón clara
+
+### 🎯 Criterios de Selección
+
+| Criterio | Pregunta Clave | Patrones Sugeridos |
+|----------|----------------|-------------------|
+| **Flexibilidad** | ¿Necesitas cambiar comportamiento en runtime? | Strategy, State, Observer |
+| **Extensibilidad** | ¿Agregar funcionalidad sin modificar código? | Decorator, Template Method |
+| **Simplicidad** | ¿Simplificar interfaces complejas? | Facade, Adapter |
+| **Configuración** | ¿Creación de objetos compleja? | Builder, Abstract Factory |
+| **Performance** | ¿Optimizar creación de objetos? | Singleton, Prototype |
+
+---
+
+## 🌍 Casos de Uso Reales
+
+### 🎮 Gaming
+- **State Pattern**: Estados del jugador (idle, corriendo, saltando)
+- **Observer Pattern**: Sistema de eventos del juego
+- **Factory Method**: Creación de diferentes tipos de enemigos
+- **Command Pattern**: Sistema de acciones deshacer/rehacer
+
+### 💻 Aplicaciones Web
+- **Singleton Pattern**: Configuración global, conexión a BD
+- **Observer Pattern**: Actualizaciones reactivas de UI
+- **Strategy Pattern**: Diferentes métodos de pago
+- **Facade Pattern**: APIs simplificadas para servicios complejos
+
+### 🏢 Sistemas Empresariales
+- **Builder Pattern**: Construcción de reportes complejos
+- **Abstract Factory**: Diferentes proveedores de servicios
+- **Mediator Pattern**: Workflow entre departamentos
+- **Template Method**: Procesos de negocio estandarizados
+
+---
+
+## 🚀 Patrones en Frameworks Populares
+
+### React/Angular
+- **Observer Pattern**: Sistema de estado reactivo
+- **Component Pattern**: Composición de UI
+- **HOC/Decorator**: Funcionalidad compartida entre componentes
+
+### Node.js/Express
+- **Middleware Pattern**: Procesamiento de requests en cadena
+- **Factory Pattern**: Creación de conexiones a BD
+- **Singleton Pattern**: Instancias únicas de servicios
+
+### TypeScript Específico
+- **Decorators**: Metadata y funcionalidad cross-cutting
+- **Generic Factory**: Creación type-safe de objetos
+- **Conditional Types**: Patrones basados en tipos
+
+---
+
+## 🔧 Refactoring con Patrones
+
+### Proceso Recomendado
+
+1. **🔍 Identificar Code Smells**
+   - Métodos muy largos → Template Method
+   - Clases con demasiadas responsabilidades → Strategy/Command
+   - Código duplicado → Template Method/Factory
+
+2. **📋 Planificar el Refactor**
+   - Escribir tests antes del cambio
+   - Aplicar un patrón a la vez
+   - Mantener la funcionalidad existente
+
+3. **🛠️ Implementar Gradualmente**
+   - Crear las nuevas estructuras
+   - Migrar funcionalidad paso a paso
+   - Eliminar código obsoleto
+
+4. **✅ Validar el Resultado**
+   - Ejecutar todos los tests
+   - Verificar mejora en métricas de calidad
+   - Documentar los cambios realizados
+
+---
+
+## 📚 Referencias y Lecturas
+
+### 📖 Libros Fundamentales
+- **"Design Patterns"** - Gang of Four (Gamma, Helm, Johnson, Vlissides)
+- **"Head First Design Patterns"** - Freeman & Robson
+- **"Patterns of Enterprise Application Architecture"** - Martin Fowler
+- **"Clean Code"** - Robert C. Martin
+
+### 🌐 Recursos Online
+- [Refactoring Guru - Design Patterns](https://refactoring.guru/design-patterns)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [SOLID Principles](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
+
+### 🎯 Cursos y Tutoriales
+- [Design Patterns in TypeScript](https://www.pluralsight.com/)
+- [Advanced TypeScript](https://egghead.io/)
+- [Software Architecture](https://www.coursera.org/)
+
+---
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas! Por favor:
+
+1. **Fork** el repositorio
+2. **Crea** una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. **Commit** tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** a la rama (`git push origin feature/AmazingFeature`)
+5. **Abre** un Pull Request
+
+### 📋 Guías de Contribución
+- Sigue las convenciones de código existentes
+- Agrega tests para nuevos patrones
+- Actualiza la documentación
+- Incluye ejemplos prácticos
+
+---
+
+## 🗺️ Roadmap
+
+### ✅ Completado
+- [x] 16 patrones fundamentales implementados
+- [x] Suite completa de tests (204 tests)
+- [x] Documentación exhaustiva
+- [x] Ejemplos prácticos
+
+### 🔄 En Progreso
+- [ ] Más patrones (Chain of Responsibility, Visitor, etc.)
+- [ ] Diagramas UML interactivos
+- [ ] Comparativas de rendimiento
+- [ ] Ejemplos con frameworks reales
+
+### 🔮 Futuro
+- [ ] Patrones específicos de JavaScript/TypeScript
+- [ ] Micro-patrones y patrones modernos
+- [ ] Video tutoriales
+- [ ] Playground interactivo online
+
+---
+
+## ❓ Preguntas Frecuentes
+
+### ❓ ¿Cuándo debo usar patrones de diseño?
+**R:** Úsalos cuando enfrentes problemas recurrentes que requieran flexibilidad, mantenibilidad o cuando trabajes en equipo y necesites un vocabulario común.
+
+### ❓ ¿Los patrones hacen el código más lento?
+**R:** Algunos patrones pueden agregar overhead mínimo, pero los beneficios en mantenibilidad y flexibilidad usualmente superan el costo de rendimiento.
+
+### ❓ ¿Debo memorizar todos los patrones?
+**R:** No es necesario. Es mejor entender profundamente algunos patrones y conocer cuándo aplicarlos que memorizar todos superficialmente.
+
+### ❓ ¿Puedo combinar múltiples patrones?
+**R:** ¡Absolutamente! Muchos sistemas reales combinan varios patrones. La clave es hacerlo de manera consciente y documentada.
+
+### ❓ ¿Los patrones son específicos de POO?
+**R:** Aunque muchos patrones clásicos son para POO, los conceptos se pueden adaptar a programación funcional y otros paradigmas.
 
 ---
 
