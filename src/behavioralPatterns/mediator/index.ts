@@ -1,5 +1,5 @@
 import { FedExPackage } from './FedExPackage'
-import { PackageManager } from './Package.Manager'
+import { PackageManager } from './PackageManager'
 import { UPSPackage } from './UPSPackage'
 
 function mediatorClient() {

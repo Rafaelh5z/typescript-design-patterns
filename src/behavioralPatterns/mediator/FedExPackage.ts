@@ -12,6 +12,8 @@ export class FedExPackage extends Package {
 
     ship() {
         if (this.mediator.canShip(this)) {
+            console.log('FedEx Package: Ready to ship')
+        } else {
             console.log('FedEx Package Shipping blocked...waiting')
         }
     }
@@ -24,7 +26,6 @@ export class FedExPackage extends Package {
 
     allowShipping(): void {
         console.log('FedEx Package: Ready to ship')
-        this.ship()
     }
 
 }

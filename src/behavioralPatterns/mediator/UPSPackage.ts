@@ -12,6 +12,8 @@ export class UPSPackage extends Package {
 
     ship() {
         if (this.mediator.canShip(this)) {
+            console.log('UPS Package: Ready to ship')
+        } else {
             console.log('UPS Package Shipping blocked...waiting')
         }
     }
@@ -24,6 +26,5 @@ export class UPSPackage extends Package {
 
     allowShipping(): void {
         console.log('UPS Package: Ready to ship')
-        this.ship()
     }
 }

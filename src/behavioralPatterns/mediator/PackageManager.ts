@@ -21,18 +21,13 @@ export class PackageManager extends Mediator {
     }
 
     notifyAboutDelivery(): void {
-
-        if (!this.isPackagePacked) {
-        
-            this.isPackagePacked = true
-        }
+        this.isPackagePacked = true
         
         if (this.packages.length > 0) {
-        
-            const firstPackage = this.packages[0]
-        
-            this.packages.shift()
-            firstPackage.allowShipping()
+            const firstPackage = this.packages.shift()
+            if (firstPackage) {
+                firstPackage.allowShipping()
+            }
         }
     }
 }
