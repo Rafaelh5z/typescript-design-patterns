@@ -85,7 +85,7 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 ### Prerrequisitos
 - [Node.js](https://nodejs.org/) (versión 14 o superior)
 - [TypeScript](https://www.typescriptlang.org/) (versión 4.0 o superior)
-- Un editor de código (recomendado: VS Code)
+- Un editor de código
 
 ### Instalación
 ```bash
@@ -98,30 +98,77 @@ cd typescript-design-patterns
 # Instalar dependencias
 npm install
 
-# Compilar TypeScript
-npm run build
-
-# Ejecutar ejemplos
-npm run start
+# Ejecutar un test especifico
+npm test -- tests/behavioralPatterns/mediator.test.ts
 ```
 
 ### 📋 Comandos Disponibles
 
+#### 🛠️ Comandos de Desarrollo
 ```bash
-# Desarrollo
-npm run dev          # Compilación en modo watch
-npm run build        # Compilar proyecto completo
-npm run start        # Ejecutar ejemplos compilados
+npm run build         # Compilar TypeScript a JavaScript
+npm start             # Ejecutar la aplicación compilada
+npm run dev           # Modo desarrollo con recarga automática
+npm run clean         # Limpiar archivos compilados
+```
 
-# Testing
-npm test             # Ejecutar tests
-npm run test:watch   # Tests en modo watch
-npm run test:coverage # Generar reporte de cobertura
+#### 🧪 Comandos de Testing
+```bash
+npm test              # Ejecutar todos los tests
+npm run test:watch    # Ejecutar tests en modo observación
+npm run test:coverage # Ejecutar tests con reporte de cobertura
+npm run lint          # Ejecutar análisis de código (ESLint)
+npm run lint:fix      # Corregir automáticamente errores de linting
+```
 
-# Calidad de código
-npm run lint         # Revisar código con ESLint
-npm run lint:fix     # Corregir problemas automáticamente
-npm run clean        # Limpiar directorio dist
+#### 📋 Comandos de Información de Patrones
+```bash
+npm run run:creational   # Lista patrones creacionales disponibles
+npm run run:structural   # Lista patrones estructurales disponibles  
+npm run run:behavioral   # Lista patrones de comportamiento disponibles
+```
+
+#### 🏗️ Demostración de Patrones Creacionales
+```bash
+npm run demo:abstract-factory  # Ejecutar ejemplo Abstract Factory
+npm run demo:builder          # Ejecutar ejemplo Builder
+npm run demo:factory-method   # Ejecutar ejemplo Factory Method
+npm run demo:prototype        # Ejecutar ejemplo Prototype
+npm run demo:singleton        # Ejecutar ejemplo Singleton
+```
+
+#### 🏢 Demostración de Patrones Estructurales
+```bash
+npm run demo:adapter     # Ejecutar ejemplo Adapter
+npm run demo:composite   # Ejecutar ejemplo Composite
+npm run demo:decorator   # Ejecutar ejemplo Decorator
+npm run demo:facade      # Ejecutar ejemplo Facade
+```
+
+#### 🎭 Demostración de Patrones de Comportamiento
+```bash
+npm run demo:command         # Ejecutar ejemplo Command
+npm run demo:iterator        # Ejecutar ejemplo Iterator
+npm run demo:mediator        # Ejecutar ejemplo Mediator
+npm run demo:observer        # Ejecutar ejemplo Observer
+npm run demo:state           # Ejecutar ejemplo State
+npm run demo:strategy        # Ejecutar ejemplo Strategy
+npm run demo:template-method # Ejecutar ejemplo Template Method
+```
+
+#### 💡 Ejemplos de Uso
+```bash
+# Ejecutar tests específicos por patrón
+npm test -- tests/behavioralPatterns/mediator.test.ts
+
+# Ejecutar demo de un patrón específico
+npm run demo:builder
+
+# Ver cobertura de tests con reporte detallado
+npm run test:coverage
+
+# Modo desarrollo mientras trabajas en el código
+npm run dev
 ```
 
 ### 🧪 Tests y Cobertura

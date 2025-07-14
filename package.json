@@ -12,7 +12,27 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "run:pattern": "ts-node",
+    "run:creational": "echo 'Available Creational Patterns:' && echo '- abstractFactory, builder, factoryMethod, prototype, singleton'",
+    "run:structural": "echo 'Available Structural Patterns:' && echo '- adapter, composite, decorator, facade'",
+    "run:behavioral": "echo 'Available Behavioral Patterns:' && echo '- command, iterator, mediator, observer, state, strategy, templateMethod'",
+    "demo:abstract-factory": "ts-node src/creationalPatterns/abstractFactory/index.ts",
+    "demo:builder": "ts-node src/creationalPatterns/builder/index.ts",
+    "demo:factory-method": "ts-node src/creationalPatterns/factoryMethod/index.ts",
+    "demo:prototype": "ts-node src/creationalPatterns/prototype/index.ts",
+    "demo:singleton": "ts-node src/creationalPatterns/singleton/index.ts",
+    "demo:adapter": "ts-node src/structuralPatterns/adapter/index.ts",
+    "demo:composite": "ts-node src/structuralPatterns/composite/index.ts",
+    "demo:decorator": "ts-node src/structuralPatterns/decorator/index.ts",
+    "demo:facade": "ts-node src/structuralPatterns/facade/index.ts",
+    "demo:command": "ts-node src/behavioralPatterns/command/index.ts",
+    "demo:iterator": "ts-node src/behavioralPatterns/iterator/index.ts",
+    "demo:mediator": "ts-node src/behavioralPatterns/mediator/index.ts",
+    "demo:observer": "ts-node src/behavioralPatterns/observer/index.ts",
+    "demo:state": "ts-node src/behavioralPatterns/state/index.ts",
+    "demo:strategy": "ts-node src/behavioralPatterns/strategy/index.ts",
+    "demo:template-method": "ts-node src/behavioralPatterns/templateMethod/index.ts"
   },
   "repository": {
     "type": "git",
@@ -44,6 +64,7 @@
     "eslint": "^9.30.1",
     "jest": "^30.0.4",
     "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.36.0"
   }
