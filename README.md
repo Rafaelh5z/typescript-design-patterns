@@ -14,27 +14,27 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 ### Beneficios de usar Patrones de Diseño:
 - ✅ **Reutilización de código**: Soluciones probadas y documentadas
 - ✅ **Comunicación mejorada**: Vocabulario común entre desarrolladores  
-- ✅ **Mejores prácticas**: Código más mantenibles y escalable
+- ✅ **Mejores prácticas**: Código más mantenible y escalable
 - ✅ **Resolución de problemas**: Enfoques estructurados para desafíos comunes
 
 ## 📋 Índice
 
 ### 🏛️ Fundamentos
-- [¿Qué son los Patrones de Diseño?](#-qué-son-los-patrones-de-diseño)
-- [Principios SOLID](#-principios-solid)
-- [Tipos de Patrones de Diseño](#-tipos-de-patrones-de-diseño)
-- [Cuándo usar Patrones de Diseño](#-cuándo-usar-patrones-de-diseño)
-- [Cuándo NO usar Patrones de Diseño](#-cuándo-no-usar-patrones-de-diseño)
+- [¿Qué son los Patrones de Diseño?](#🚀-qué-son-los-patrones-de-diseño)
+- [Principios SOLID](#🏗️-principios-solid)
+- [Tipos de Patrones de Diseño](#🎯-tipos-de-patrones-de-diseño)
+- [Cuándo usar Patrones de Diseño](#✅-cuándo-usar-patrones-de-diseño)
+- [Cuándo NO usar Patrones de Diseño](#🔴-no-los-uses-cuando)
 
 ### 🔧 Configuración del Proyecto
-- [Instalación y Configuración](#️-instalación-y-configuración)
+- [Instalación y Configuración](#🛠️-instalación-y-configuración)
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Comandos Disponibles](#-comandos-disponibles)
 - [Tests y Cobertura](#-tests-y-cobertura)
 
 ### 🏗️ Patrones Creacionales
 **Enfoque**: *Creación de objetos de manera flexible y desacoplada*
-- [Introducción a Patrones Creacionales](#-patrones-creacionales)
+- [Introducción a Patrones Creacionales](#patrones-creacionales)
 - [Abstract Factory](#patrón-de-diseño-abstract-factory-fábrica-abstracta) - Familias de objetos relacionados
 - [Builder](#patrón-de-diseño-builder-constructor) - Construcción paso a paso
 - [Factory Method](#patrón-de-diseño-factory-method-método-fábrica) - Creación mediante interfaz común
@@ -43,7 +43,7 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 
 ### 🏢 Patrones Estructurales
 **Enfoque**: *Composición de objetos y clases para formar estructuras más grandes*
-- [Introducción a Patrones Estructurales](#-patrones-estructurales)
+- [Introducción a Patrones Estructurales](#patrones-estructurales)
 - [Adapter](#patrón-de-diseño-adapter-adaptador) - Compatibilidad entre interfaces
 - [Composite](#patrón-de-diseño-composite-compuesto) - Estructuras jerárquicas
 - [Decorator](#patrón-de-diseño-decorator-decorador) - Extensión de funcionalidad
@@ -51,7 +51,7 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 
 ### 🎭 Patrones de Comportamiento
 **Enfoque**: *Comunicación entre objetos y asignación de responsabilidades*
-- [Introducción a Patrones de Comportamiento](#-patrones-de-comportamiento)
+- [Introducción a Patrones de Comportamiento](#patrones-de-comportamiento)
 - [Command](#patrón-de-diseño-command-comando) - Encapsulación de operaciones
 - [Iterator](#patrón-de-diseño-iterator-iterador) - Acceso secuencial a elementos
 - [Mediator](#patrón-de-diseño-mediator-mediador) - Comunicación centralizada
@@ -61,22 +61,22 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 - [Template Method](#patrón-de-diseño-template-method-método-plantilla) - Esqueleto de algoritmo
 
 ### 📊 Análisis Comparativo
-- [Comparativa de Tipos de Patrones](#-comparativa-de-tipos-de-patrones)
-- [Relaciones entre Patrones](#-relaciones-entre-patrones)
-- [Patrones que se Complementan](#-patrones-que-se-complementan)
-- [Antipatrones Comunes](#-antipatrones-comunes)
+- [Comparativa de Tipos de Patrones](#📊-comparativa-de-tipos-de-patrones)
+- [Relaciones entre Patrones](#🔗-relaciones-entre-patrones)
+- [Patrones que se Complementan](#patrones-que-se-complementan)
+- [Antipatrones Comunes](#⚠️-antipatrones-comunes)
 
 ### 🎯 Guías Prácticas
-- [Mejores Prácticas](#-mejores-prácticas)
-- [Casos de Uso Reales](#-casos-de-uso-reales)
-- [Patrones en Frameworks Populares](#-patrones-en-frameworks-populares)
-- [Refactoring con Patrones](#-refactoring-con-patrones)
+- [Mejores Prácticas](#🎯-mejores-prácticas)
+- [Casos de Uso Reales](#🌍-casos-de-uso-reales)
+- [Patrones en Frameworks Populares](#🚀-patrones-en-frameworks-populares)
+- [Refactoring con Patrones](#🔧-refactoring-con-patrones)
 
 ### 📚 Recursos Adicionales
-- [Referencias y Lecturas](#-referencias-y-lecturas)
-- [Contribución al Proyecto](#-contribución)
-- [Roadmap](#-roadmap)
-- [FAQ](#-preguntas-frecuentes)
+- [Referencias y Lecturas](#📚-referencias-y-lecturas)
+- [Contribución al Proyecto](#🤝-contribución)
+- [Roadmap](#🗺️-roadmap)
+- [FAQ](#❓-preguntas-frecuentes)
 
 ---
 
@@ -794,7 +794,7 @@ El patrón Singleton resuelve dos problemas a la vez, violando el *Principio de 
 
 ### ¿Cómo funciona?
 
-Todos las implementaciones del Singleton tienen estos dos pasos en común:
+Todas las implementaciones del Singleton tienen estos dos pasos en común:
 
 *   Hacer que el constructor predeterminado sea privado, para evitar que otros objetos usen el operador `new` con la clase Singleton.
 *   Crear un método de creación estático que actúe como constructor. Este método llama al constructor privado para crear un objeto y lo guarda en un campo estático. Todas las siguientes llamadas a este método devuelven el objeto en caché.
