@@ -86,10 +86,6 @@ src/
 
 ## 📊 Comparativa de Tipos de Patrones
 
----
-
-## 📊 Comparativa de Tipos de Patrones
-
 | Tipo | Propósito Principal | Enfoque | Cuándo Usar | Ejemplos |
 |------|-------------------|---------|-------------|----------|
 | **Creacionales** | Creación de objetos | Desacoplar la instanciación | Cuando la creación es compleja | Factory, Builder, Singleton |
@@ -108,20 +104,6 @@ Algunos de los patrones creacionales más comunes son:
 - **Builder:** Permite construir objetos complejos paso a paso.
 - **Singleton:** Asegura que una clase solo tenga una única instancia y proporciona un punto de acceso global a ella.
 - **Prototype:** Permite copiar objetos existentes sin que el código dependa de sus clases.
-
-## Diferencias Clave: Creacionales vs. Estructurales
-
-Aunque ambos tipos de patrones de diseño ayudan a crear sistemas robustos y mantenibles, se centran en aspectos diferentes del diseño de software:
-
-- **Propósito:**
-    - **Creacionales:** Se enfocan en el **proceso de creación de objetos**. Su objetivo es proporcionar mecanismos de instanciación que aumentan la flexibilidad y la reutilización del código. Se preocupan por el *qué* y el *cómo* se crea un objeto.
-    - **Estructurales:** Se enfocan en la **composición de clases y objetos**. Su objetivo es organizar diferentes clases y objetos para formar estructuras más grandes y proporcionar nuevas funcionalidades. Se preocupan por *cómo se relacionan* las entidades entre sí.
-
-- **Enfoque:**
-    - **Creacionales:** Desacoplan el código cliente de las clases concretas que necesita instanciar.
-    - **Estructurales:** Describen cómo los objetos y las clases pueden combinarse para formar una estructura más grande y compleja.
-
-En resumen, los patrones creacionales se ocupan de la creación de objetos, mientras que los patrones estructurales se ocupan de la estructura de los objetos.
 
 ## Patrones Estructurales
 
