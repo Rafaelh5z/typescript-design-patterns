@@ -526,4 +526,491 @@ La versión inicial de la biblioteca solo tenía la clase `Notificador` que envi
 
 En algún momento, te das cuenta de que los usuarios de la biblioteca querrían más que solo notificaciones por correo electrónico. Muchos de ellos querrían recibir notificaciones de SMS. Otros querrían recibir notificaciones de Facebook. Y, por supuesto, hay gente que querría recibir notificaciones de Slack.
 
-¿Cómo implementaría
+¿Cómo implementarías esto? Podrías crear subclases para cada tipo de notificación, como `NotificadorSMS`, `NotificadorFacebook`, etc. Pero este enfoque tiene un gran problema: si un usuario quiere recibir notificaciones de varios tipos a la vez, tendrías que crear subclases combinadas como `NotificadorFacebookSMS`. Esto llevaría a una explosión de clases.
+
+### ¿Cómo funciona?
+
+El patrón Decorator te permite envolver un objeto con otros objetos que "decoran" el objeto original con nuevas funcionalidades.
+
+El patrón sugiere que crees una interfaz `Componente` y que tanto el objeto original como los decoradores la implementen. El cliente puede entonces trabajar con todos los objetos a través de esta interfaz.
+
+Un decorador es un objeto que envuelve a otro objeto. El decorador implementa la misma interfaz que el objeto que envuelve. El decorador delega todo el trabajo al objeto envuelto, pero también puede añadir algo propio antes o después de la delegación.
+
+Puedes envolver un objeto en múltiples capas de decoradores.
+
+### Estructura
+
+1.  La interfaz **Componente** declara la interfaz común tanto para los envoltorios como para los objetos envueltos.
+2.  El **Componente Concreto** es la clase de objetos que se envuelven. Define el comportamiento básico, que puede ser alterado por los decoradores.
+3.  La clase **Decorador Base** tiene un campo para referenciar un objeto envuelto. El tipo del campo debe ser la interfaz del componente para que pueda contener tanto componentes concretos como decoradores. El decorador base delega todo el trabajo al objeto envuelto.
+4.  Los **Decoradores Concretos** definen funcionalidades adicionales que se pueden añadir a los componentes dinámicamente. Los decoradores concretos sobrescriben los métodos del decorador base y ejecutan su comportamiento antes o después de llamar al método padre.
+5.  El **Cliente** puede envolver componentes en múltiples capas de decoradores, siempre que trabaje con todos los objetos a través de la interfaz del componente.
+
+![Estructura del Patrón Decorator](assets/documentation/decorator.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Decorator cuando necesites poder asignar responsabilidades adicionales a los objetos en tiempo de ejecución sin romper el código que utiliza estos objetos.**
+*   **Usa el patrón cuando no sea posible o sea inconveniente extender el comportamiento de un objeto mediante la herencia.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes extender el comportamiento de un objeto sin hacer una nueva subclase.
+*   Puedes añadir o quitar responsabilidades de un objeto en tiempo de ejecución.
+*   Puedes combinar varias responsabilidades envolviendo un objeto con varios decoradores.
+*   *Principio de Responsabilidad Única*. Puedes dividir una clase monolítica que implementa muchas variantes de comportamiento en varias clases más pequeñas.
+
+#### Contras
+
+*   Puede ser difícil eliminar un envoltorio específico de la pila de envoltorios.
+*   Puede ser difícil implementar un decorador de tal manera que su comportamiento no dependa del orden en la pila de decoradores.
+*   La configuración inicial del código puede ser complicada, ya que necesitas introducir muchas clases pequeñas nuevas.
+
+---
+
+## Patrón de Diseño Facade (Fachada)
+
+**Facade** es un patrón de diseño estructural que proporciona una interfaz simplificada a una biblioteca, un framework o cualquier otro conjunto complejo de clases.
+
+### Problema que resuelve
+
+Imagina que tu código debe trabajar con un gran número de objetos que pertenecen a una biblioteca o framework sofisticado. Normalmente, necesitarías inicializar todos esos objetos, llevar un registro de las dependencias, ejecutar los métodos en el orden correcto, y así sucesivamente.
+
+Como resultado, la lógica de negocio de tus clases se vería estrechamente acoplada a los detalles de implementación de las clases de terceros, haciéndola difícil de comprender y mantener.
+
+Por ejemplo, considera un framework que convierte videos a diferentes formatos. Aunque parece muy útil, la primera vez que lo usas puede ser intimidante. Requiere que instancies docenas de clases diferentes, cargues archivos de configuración, inicialices codecs, etc. Toda esta complejidad se filtra a tu código cliente, haciéndolo más difícil de leer y mantener.
+
+### ¿Cómo funciona?
+
+Una fachada es una clase que proporciona una interfaz simple a un subsistema complejo que contiene muchas partes móviles. Una fachada puede proporcionar una funcionalidad limitada en comparación con trabajar directamente con el subsistema. Sin embargo, solo incluye las características que realmente le importan a los clientes.
+
+Tener una fachada es útil cuando necesitas integrar tu aplicación con una biblioteca sofisticada que tiene docenas de características, pero solo necesitas una pequeña parte de su funcionalidad.
+
+La fachada proporciona un punto de acceso simple a un subsistema complejo. Esto puede ser especialmente útil cuando trabajas con APIs complejas o frameworks que requieren muchos pasos de configuración.
+
+### Estructura
+
+1.  La **Fachada** proporciona un acceso conveniente a una parte particular de la funcionalidad del subsistema. Sabe a dónde dirigir la petición del cliente y cómo operar todas las partes móviles.
+2.  Se puede crear una **Fachada Adicional** para evitar contaminar una única fachada con características no relacionadas que podrían convertirla en otra estructura compleja. Las fachadas adicionales pueden ser utilizadas tanto por clientes como por otras fachadas.
+3.  El **Subsistema Complejo** consiste en docenas de objetos diversos. Para lograr que todos hagan algo significativo, tienes que profundizar en los detalles de implementación del subsistema, como inicializar objetos en el orden correcto y suministrarles datos en el formato adecuado.
+4.  El **Cliente** utiliza la fachada en lugar de llamar directamente a los objetos del subsistema.
+
+![Estructura del Patrón Facade](assets/documentation/facade.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Facade cuando necesites una interfaz limitada pero directa a un subsistema complejo.**
+*   **Usa el patrón Facade cuando quieras estructurar un subsistema en capas.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes aislar tu código de la complejidad de un subsistema.
+*   Reduces el acoplamiento entre el código cliente y las clases del subsistema.
+*   Simplifica el uso de subsistemas complejos.
+
+#### Contras
+
+*   Una fachada puede convertirse en un objeto todopoderoso acoplado a todas las clases de una aplicación.
+
+---
+
+## Patrón de Diseño Iterator (Iterador)
+
+**Iterator** es un patrón de diseño de comportamiento que permite recorrer elementos de una colección sin exponer su representación subyacente (lista, pila, árbol, etc.).
+
+### Problema que resuelve
+
+Las colecciones son uno de los tipos de datos más utilizados en programación. Sin embargo, una colección es tan solo un contenedor para un grupo de objetos.
+
+La mayoría de las colecciones almacenan sus elementos en listas simples. Sin embargo, algunas de ellas se basan en pilas, árboles, grafos y otras estructuras de datos complejas.
+
+Pero independientemente de cómo esté estructurada una colección, debe proporcionar una forma de acceder a sus elementos para que otro código pueda utilizar dichos elementos. Debería haber una forma de recorrer cada elemento de la colección sin acceder a los mismos elementos una y otra vez.
+
+Esto puede parecer un trabajo fácil si tienes una colección basada en una lista. En este caso solo tienes que recorrer todos los elementos en bucle. Pero, ¿cómo recorres secuencialmente elementos de una estructura de datos compleja como un árbol? Por ejemplo, un día puede bastarte con un recorrido en profundidad de un árbol. Al día siguiente puede que necesites un recorrido en anchura. Y la semana siguiente, puede que necesites algo diferente, como un acceso aleatorio a los elementos del árbol.
+
+### ¿Cómo funciona?
+
+La idea principal del patrón Iterator es extraer el comportamiento de recorrido de una colección y colocarlo en un objeto separado llamado *iterador*.
+
+Además de implementar el algoritmo en sí, un objeto iterador encapsula todos los detalles del recorrido, como la posición actual y cuántos elementos quedan hasta el final. Debido a esto, varios iteradores pueden recorrer la misma colección al mismo tiempo, independientemente los unos de los otros.
+
+Normalmente, los iteradores aportan un método primario para extraer elementos de la colección. El cliente puede continuar ejecutando este método hasta que no devuelva nada, lo que significa que el iterador ha recorrido todos los elementos.
+
+### Estructura
+
+1.  La interfaz **Iterador** declara las operaciones necesarias para recorrer una colección: extraer el siguiente elemento, recuperar la posición actual, reiniciar la iteración, etc.
+2.  Los **Iteradores Concretos** implementan algoritmos específicos para recorrer una colección. El objeto iterador debe rastrear el progreso del recorrido por su cuenta. Esto permite a varios iteradores recorrer la misma colección con independencia entre sí.
+3.  La interfaz **Colección** declara uno o varios métodos para obtener iteradores compatibles con la colección. Observa que el tipo de retorno de los métodos debe declararse como la interfaz iterador, de modo que las colecciones concretas puedan devolver varios tipos de iteradores.
+4.  Las **Colecciones Concretas** devuelven nuevas instancias de una clase iteradora concreta particular cada vez que el cliente solicita una. Te puede estar preguntando: ¿dónde está el resto del código de la colección? No te preocupes, debe estar en la misma clase. Lo que pasa es que estos detalles no son fundamentales para el patrón en sí, por lo que los omitimos.
+5.  El **Cliente** debe funcionar con colecciones e iteradores a través de sus interfaces. De esta forma, el cliente no se acopla a clases concretas, permitiéndote utilizar varias colecciones e iteradores con el mismo código cliente.
+
+![Estructura del Patrón Iterator](assets/documentation/iterator.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Iterator cuando tu colección tenga una estructura de datos compleja a nivel interno, pero quieras ocultar su complejidad a los clientes.**
+*   **Usa el patrón para reducir la duplicación del código de recorrido a lo largo de tu aplicación.**
+*   **Usa el patrón Iterator cuando quieras que tu código sea capaz de recorrer diferentes estructuras de datos.**
+
+### Pros y Contras
+
+#### Pros
+
+*   *Principio de Responsabilidad Única*. Puedes limpiar el código cliente y las colecciones extrayendo algoritmos de recorrido voluminosos y colocándolos en clases separadas.
+*   *Principio de Abierto/Cerrado*. Puedes implementar nuevos tipos de colecciones e iteradores y pasarlos al código existente sin descomponer nada.
+*   Puedes iterar sobre la misma colección en paralelo porque cada objeto iterador contiene su propio estado de iteración.
+*   Por la misma razón, puedes retrasar una iteración y continuar cuando sea necesario.
+
+#### Contras
+
+*   Aplicar el patrón puede resultar excesivo si tu aplicación funciona únicamente con colecciones sencillas.
+*   Utilizar un iterador puede ser menos eficiente que recorrer directamente los elementos de algunas colecciones especializadas.
+
+---
+
+## Patrón de Diseño State (Estado)
+
+**State** es un patrón de diseño de comportamiento que permite que un objeto altere su comportamiento cuando su estado interno cambia. Parece como si el objeto cambiara su clase.
+
+### Problema que resuelve
+
+El patrón State está estrechamente relacionado con el concepto de la *Máquina de Estados Finitos*.
+
+La idea principal es que, en cualquier momento dado, un programa puede encontrarse en un número finito de *estados*. Dentro de cada estado único, el programa se comporta de forma diferente y puede cambiar de un estado a otro instantáneamente. Sin embargo, dependiendo del estado actual, el programa puede cambiar o no a otros estados. Estas reglas de cambio llamadas *transiciones* también son finitas y predeterminadas.
+
+También puedes aplicar esta metodología a los objetos. Imagina que tienes una clase `Documento`. Un documento puede encontrarse en uno de tres estados: `Borrador`, `Moderación` y `Publicado`. El método `publicar` del documento funciona de forma ligeramente diferente en cada estado.
+
+### ¿Cómo funciona?
+
+El patrón State sugiere que crees nuevas clases para todos los estados posibles de un objeto y extraigas todos los comportamientos específicos del estado para colocarlos dentro de esas clases.
+
+En lugar de implementar todos los comportamientos por su cuenta, el objeto original, llamado *contexto*, almacena una referencia a uno de los objetos de estado que representa su estado actual y delega todo el trabajo relacionado con el estado a ese objeto.
+
+Para hacer la transición del contexto a otro estado, sustituye el objeto de estado activo por otro objeto que represente ese nuevo estado. Esto solo es posible si todas las clases de estado siguen la misma interfaz y el propio contexto funciona con esos objetos a través de esa interfaz.
+
+### Estructura
+
+1.  El **Contexto** almacena una referencia a uno de los objetos de estado concreto y le delega todo el trabajo específico del estado. El contexto se comunica con el objeto de estado a través de la interfaz de estado. El contexto expone un modificador (setter) para pasarle un nuevo objeto de estado.
+2.  La interfaz **Estado** declara los métodos específicos del estado. Estos métodos deben tener sentido para todos los estados concretos, porque no querrás que algunos de tus estados tengan métodos inútiles que nunca son invocados.
+3.  Los **Estados Concretos** proporcionan sus propias implementaciones para los métodos específicos del estado. Para evitar la duplicación de código similar a través de varios estados, puedes proporcionar clases abstractas intermedias que encapsulen algún comportamiento común.
+4.  Tanto el contexto como los estados concretos pueden establecer el siguiente estado del contexto y realizar la transición de estado sustituyendo el objeto de estado vinculado al contexto.
+
+![Estructura del Patrón State](assets/documentation/state.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón State cuando tengas un objeto que se comporta de forma diferente dependiendo de su estado actual, el número de estados sea enorme, y el código específico del estado cambie con frecuencia.**
+*   **Usa el patrón cuando tengas una clase contaminada con enormes condicionales que alteran el modo en que se comporta la clase de acuerdo con los valores actuales de los campos de la clase.**
+*   **Usa el patrón State cuando tengas mucho código duplicado a través de estados similares y transiciones de una máquina de estados basada en condiciones.**
+
+### Pros y Contras
+
+#### Pros
+
+*   *Principio de Responsabilidad Única*. Organiza el código relacionado con estados particulares en clases separadas.
+*   *Principio de Abierto/Cerrado*. Introduce nuevos estados sin cambiar clases de estado existentes o la clase contexto.
+*   Simplifica el código del contexto eliminando voluminosos condicionales de máquina de estados.
+
+#### Contras
+
+*   Aplicar el patrón puede resultar excesivo si una máquina de estados solo tiene unos pocos estados o raramente cambia.
+
+---
+
+## Patrón de Diseño Template Method (Método Plantilla)
+
+**Template Method** es un patrón de diseño de comportamiento que define el esqueleto de un algoritmo en la superclase pero deja que las subclases sobrescriban pasos específicos del algoritmo sin cambiar su estructura.
+
+### Problema que resuelve
+
+Imagina que estás creando una aplicación de minería de datos que analiza documentos corporativos. Los usuarios alimentan la aplicación con documentos en varios formatos (PDF, DOC, CSV), y ésta intenta extraer la información significativa de estos documentos en un formato uniforme.
+
+La primera versión de la aplicación solo funcionaba con archivos DOC. En la siguiente versión, era capaz de soportar archivos CSV. Un mes después, le "enseñaste" a extraer datos de archivos PDF.
+
+En cierto momento te das cuenta de que las tres clases tienen mucho código similar. Aunque el código para gestionar distintos formatos de datos es totalmente diferente en todas las clases, el código para procesar y analizar los datos es casi idéntico. ¿No sería genial deshacerse de la duplicación de código, dejando intacta la estructura del algoritmo?
+
+### ¿Cómo funciona?
+
+El patrón Template Method sugiere que dividas un algoritmo en una serie de pasos, conviertas estos pasos en métodos, y coloques una serie de llamadas a esos métodos dentro de un único *método plantilla*. Los pasos pueden ser `abstractos`, o contar con una implementación por defecto. Para utilizar el algoritmo, el cliente debe proporcionar su propia subclase, implementar todos los pasos abstractos, y sobrescribir algunos de los opcionales si es necesario (pero no el propio método plantilla).
+
+### Estructura
+
+1.  La **Clase Abstracta** declara métodos que actúan como pasos de un algoritmo, así como el propio método plantilla que invoca estos métodos en un orden específico. Los pasos pueden declararse `abstractos` o contar con una implementación por defecto.
+2.  Las **Clases Concretas** pueden sobrescribir todos los pasos, pero no el método plantilla en sí.
+
+![Estructura del Patrón Template Method](assets/documentation/template-method.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Template Method cuando quieras permitir a los clientes que extiendan únicamente pasos particulares de un algoritmo, pero no todo el algoritmo o su estructura.**
+*   **Usa el patrón cuando tengas varias clases que contengan algoritmos casi idénticos, con algunas diferencias menores.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes permitir a los clientes que sobrescriban únicamente ciertas partes de un algoritmo grande, para que les afecten menos los cambios que tienen lugar en otras partes del algoritmo.
+*   Puedes colocar el código duplicado dentro de una superclase.
+
+#### Contras
+
+*   Algunos clientes pueden verse limitados por el esqueleto proporcionado de un algoritmo.
+*   Puede que violes el *Principio de Sustitución de Liskov* suprimiendo una implementación por defecto de un paso a través de una subclase.
+*   Los métodos plantilla tienden a ser más difíciles de mantener cuantos más pasos tengan.
+
+---
+
+## Patrón de Diseño Command (Comando)
+
+**Command** es un patrón de diseño de comportamiento que convierte una solicitud en un objeto independiente que contiene toda la información sobre la solicitud. Esta transformación te permite parametrizar los métodos con diferentes solicitudes, retrasar o poner en cola la ejecución de solicitudes y soportar operaciones que no se pueden realizar.
+
+### Problema que resuelve
+
+Imagina que estás trabajando en una nueva aplicación de editor de texto. Tu tarea actual consiste en crear una barra de herramientas con unos cuantos botones para varias operaciones del editor. Creaste una clase `Botón` muy limpia que puede utilizarse para los botones de la barra de herramientas y también para botones genéricos en varios cuadros de diálogo.
+
+Aunque todos estos botones se parecen, se supone que hacen cosas diferentes. ¿Dónde pondrías el código para los varios gestores de clics de estos botones? La solución más simple consiste en crear cientos de subclases para cada lugar donde se utilice el botón. Estas subclases contendrían el código que debería ejecutarse con el clic de un botón.
+
+Pronto te das cuenta de que esta solución es muy deficiente. En primer lugar, tienes una cantidad enorme de subclases, lo cual no sería un problema si no corrieras el riesgo de descomponer el código de esas subclases cada vez que modifiques la clase base `Botón`.
+
+### ¿Cómo funciona?
+
+El buen diseño de software a menudo se basa en el *principio de separación de responsabilidades*, que suele tener como resultado la división de la aplicación en capas. El ejemplo más habitual: una capa para la interfaz gráfica de usuario (GUI) y otra capa para la lógica de negocio.
+
+El patrón Command sugiere que los objetos GUI no envíen estas solicitudes directamente. En lugar de eso, debes colocar todos los detalles de la solicitud, como el objeto que está siendo invocado, el nombre del método y la lista de argumentos, dentro de una clase *comando* separada con un único método que activa esta solicitud.
+
+Los objetos de comando sirven como vínculo entre varios objetos GUI y de lógica de negocio. De ahora en adelante, el objeto GUI no tiene que conocer qué objeto de la lógica de negocio recibirá la solicitud y cómo la procesará. El objeto GUI activa el comando, que gestiona todos los detalles.
+
+### Estructura
+
+1.  La interfaz **Comando** normalmente declara un único método para ejecutar un comando.
+2.  El **Comando Concreto** implementa varios tipos de solicitudes. Un comando concreto no se supone que haga el trabajo por su cuenta, sino que pasa la llamada a uno de los objetos de la lógica de negocio. Sin embargo, para lograr simplificar el código, estas clases se pueden fusionar.
+3.  El **Receptor** contiene cierta lógica de negocio. Casi cualquier objeto puede actuar como receptor. La mayoría de los comandos solo gestiona los detalles sobre cómo se pasa una solicitud al receptor, mientras que el propio receptor hace el trabajo real.
+4.  El **Invocador** (o *emisor*) está asociado con uno o varios comandos. El invocador envía una solicitud al comando.
+5.  El **Cliente** crea y configura los objetos de comando concreto. El cliente debe pasar todos los parámetros de la solicitud, incluyendo una instancia del receptor, dentro del constructor del comando.
+
+![Estructura del Patrón Command](assets/documentation/command.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Command cuando quieras parametrizar objetos con operaciones.**
+*   **Usa el patrón Command cuando quieras poner operaciones en cola, programar su ejecución, o ejecutarlas de forma remota.**
+*   **Usa el patrón Command cuando quieras implementar operaciones reversibles.**
+
+### Pros y Contras
+
+#### Pros
+
+*   *Principio de Responsabilidad Única*. Puedes desacoplar las clases que invocan operaciones de las clases que realizan esas operaciones.
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevos comandos en la aplicación sin descomponer el código cliente existente.
+*   Puedes implementar deshacer/rehacer.
+*   Puedes implementar la ejecución diferida de operaciones.
+*   Puedes ensamblar un grupo de comandos simples para crear uno complejo.
+
+#### Contras
+
+*   El código puede volverse más complicado, ya que estás introduciendo una nueva capa entre emisores y receptores.
+
+---
+
+## Patrón de Diseño Mediator (Mediador)
+
+**Mediator** es un patrón de diseño de comportamiento que reduce las dependencias caóticas entre objetos. El patrón restringe las comunicaciones directas entre los objetos y los obliga a colaborar únicamente a través de un objeto mediador.
+
+### Problema que resuelve
+
+Digamos que tienes un cuadro de diálogo para crear y editar perfiles de cliente. Consiste en varios controles de formulario, como campos de texto, casillas, botones, etc.
+
+Algunos de los elementos del formulario pueden interactuar con otros. Por ejemplo, al seleccionar la casilla "tengo un perro" puede aparecer un campo de texto oculto para introducir el nombre del perro. Otro ejemplo es el botón de envío que tiene que validar los valores de todos los campos antes de guardar los datos.
+
+Al implementar esta lógica directamente dentro del código de los elementos del formulario, haces que las clases de estos elementos sean mucho más difíciles de reutilizar en otros formularios de la aplicación. Por ejemplo, no podrás utilizar esa clase de casilla dentro de otro formulario porque está acoplada al campo de texto del perro. O bien puedes utilizar todas las clases implicadas en representar el formulario del perfil, o no puedes utilizar ninguna.
+
+### ¿Cómo funciona?
+
+El patrón Mediator sugiere que detengas toda comunicación directa entre los componentes que quieres hacer independientes entre sí. En lugar de eso, estos componentes deben colaborar indirectamente, invocando un objeto mediador especial que redirecciona las llamadas a los componentes adecuados. Como resultado, los componentes dependen únicamente de una sola clase mediadora, en lugar de estar acoplados a docenas de sus colegas.
+
+En nuestro ejemplo del formulario de edición del perfil, la propia clase de diálogo puede actuar como mediadora. Lo más probable es que la clase de diálogo ya conozca todos sus subelementos, por lo que ni siquiera será necesario que introduzcas nuevas dependencias en esta clase.
+
+### Estructura
+
+1.  Los **Componentes** son varias clases que contienen cierta lógica de negocio. Cada componente tiene una referencia a una interfaz mediadora, declarada con el tipo de la interfaz mediadora. El componente no conoce la clase real de la mediadora, por lo que puedes reutilizar el componente en otros programas vinculándolo a una mediadora diferente.
+2.  La interfaz **Mediadora** declara métodos de comunicación con los componentes, que normalmente incluyen un único método de notificación. Los componentes pueden pasar cualquier contexto como argumentos de este método, incluyendo sus propios objetos, pero solo de tal forma que no haya acoplamiento entre un componente receptor y la clase del emisor.
+3.  Los **Mediadores Concretos** encapsulan las relaciones entre varios componentes. Los mediadores concretos a menudo mantienen referencias a todos los componentes que gestionan y en ocasiones gestionan incluso el ciclo de vida de los componentes.
+4.  Los componentes no deben conocer otros componentes. Si le sucede algo importante a un componente, o dentro de él, solo debe notificar a la mediadora. Cuando la mediadora recibe la notificación, puede identificar fácilmente al emisor, lo cual puede ser suficiente para decidir qué componente debe activarse en respuesta.
+
+![Estructura del Patrón Mediator](assets/documentation/mediator.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Mediator cuando sea difícil cambiar algunas de las clases porque están muy acopladas a un puñado de otras clases.**
+*   **Usa el patrón cuando no puedas reutilizar un componente en un programa diferente porque sea muy dependiente de otros componentes.**
+*   **Usa el patrón Mediator cuando te encuentres creando cientos de subclases de componente solo para reutilizar algún comportamiento básico en varios contextos.**
+
+### Pros y Contras
+
+#### Pros
+
+*   *Principio de Responsabilidad Única*. Puedes extraer las comunicaciones entre varios componentes dentro de un solo lugar, haciéndolo más fácil de comprender y mantener.
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevas mediadoras sin tener que cambiar los propios componentes.
+*   Puedes reducir el acoplamiento entre varios componentes de un programa.
+*   Puedes reutilizar componentes individuales con mayor facilidad.
+
+#### Contras
+
+*   Con el tiempo, una mediadora puede evolucionar hasta convertirse en un *Objeto todopoderoso*.
+
+---
+
+## Patrón de Diseño Observer (Observador)
+
+**Observer** es un patrón de diseño de comportamiento que permite definir un mecanismo de suscripción para notificar a múltiples objetos sobre cualquier evento que le suceda al objeto que están observando.
+
+### Problema que resuelve
+
+Imagina que tienes dos tipos de objetos: un objeto `Cliente` y un objeto `Tienda`. El cliente está muy interesado en una marca particular de producto (digamos, un nuevo modelo de iPhone) que estará disponible en la tienda muy pronto.
+
+El cliente puede visitar la tienda cada día para comprobar la disponibilidad del producto. Pero, mientras el producto no esté disponible, la mayoría de estos viajes serán en vano.
+
+Por otro lado, la tienda podría enviar cientos de correos electrónicos (lo cual se consideraría spam) a todos los clientes cada vez que haya un nuevo producto disponible. Esto ahorraría a los clientes los viajes innecesarios a la tienda, pero, al mismo tiempo, molestaría a otros clientes que no están interesados en los nuevos productos.
+
+Parece que nos encontramos ante un conflicto. O el cliente malgasta tiempo comprobando la disponibilidad del producto, o la tienda malgasta recursos notificando a los clientes equivocados.
+
+### ¿Cómo funciona?
+
+El objeto que tiene un estado interesante suele denominarse *sujeto*, pero, como también va a notificar a otros objetos los cambios en su estado, le llamaremos *notificador*. Todos los demás objetos que quieren rastrear los cambios del estado del notificador, se denominan *suscriptores*.
+
+El patrón Observer sugiere que añadas un mecanismo de suscripción a la clase notificadora para que los objetos individuales puedan suscribirse o desuscribirse de un flujo de eventos que proviene de esa notificadora. ¡No temas! No es tan complicado como parece. En realidad, este mecanismo consiste en: 1) un campo matriz para almacenar una lista de referencias a objetos suscriptores y 2) varios métodos públicos que permiten añadir suscriptores y eliminarlos de esa lista.
+
+### Estructura
+
+1.  El **Notificador** envía eventos de interés a otros objetos. Estos eventos ocurren cuando el notificador cambia su estado o ejecuta algunos comportamientos. Los notificadores contienen una infraestructura de suscripción que permite a nuevos suscriptores unirse y a los actuales abandonar la lista.
+2.  Cuando sucede un nuevo evento, el notificador recorre la lista de suscripción e invoca el método de notificación declarado en la interfaz suscriptora en cada objeto suscriptor.
+3.  La interfaz **Suscriptor** declara la interfaz de notificación. En la mayoría de los casos, consiste en un único método `actualizar`. El método puede tener varios parámetros que permitan al notificador pasar algunos detalles del evento junto a la actualización.
+4.  Los **Suscriptores Concretos** realizan algunas acciones en respuesta a las notificaciones emitidas por el notificador. Todas estas clases deben implementar la misma interfaz de forma que el notificador no esté acoplado a clases concretas.
+5.  Normalmente, los suscriptores necesitan cierta información contextual para gestionar correctamente la actualización. Por este motivo, a menudo los notificadores pasan cierta información de contexto como argumentos del método de notificación.
+
+![Estructura del Patrón Observer](assets/documentation/observer.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Observer cuando los cambios en el estado de un objeto puedan necesitar cambiar otros objetos, y el grupo de objetos sea desconocido de antemano o cambie dinámicamente.**
+*   **Usa el patrón cuando algunos objetos de tu aplicación deban observar a otros, pero solo durante un tiempo limitado o en casos específicos.**
+
+### Pros y Contras
+
+#### Pros
+
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevas clases suscriptoras sin tener que cambiar el código del notificador (y viceversa si hay una interfaz notificadora).
+*   Puedes establecer relaciones entre objetos durante el tiempo de ejecución.
+
+#### Contras
+
+*   Los suscriptores son notificados en un orden aleatorio.
+
+---
+
+## Patrón de Diseño Strategy (Estrategia)
+
+**Strategy** es un patrón de diseño de comportamiento que permite definir una familia de algoritmos, colocar cada uno de ellos en una clase separada y hacer que sus objetos sean intercambiables.
+
+### Problema que resuelve
+
+Un día decidiste crear una aplicación de navegación para viajeros ocasionales. La aplicación giraba en torno a un bonito mapa que ayudaba a los usuarios a orientarse rápidamente en cualquier ciudad.
+
+Una de las funciones más solicitadas para la aplicación era la planificación automática de rutas. Un usuario debía poder introducir una dirección y ver la ruta más rápida a ese destino mostrada en el mapa.
+
+La primera versión de la aplicación solo podía generar las rutas sobre carreteras. Las personas que viajaban en coche estaban muy contentas. Pero, aparentemente, no a todo el mundo le gusta conducir en sus vacaciones. De modo que, en la siguiente actualización, añadiste una opción para crear rutas a pie. Después, añadiste otra opción para permitir a las personas utilizar el transporte público en sus rutas.
+
+Sin embargo, esto era solo el principio. Más tarde planeaste añadir la generación de rutas para ciclistas, y más tarde, otra opción para las rutas por todas las atracciones turísticas de una ciudad.
+
+Aunque desde una perspectiva comercial la aplicación era un éxito, la parte técnica te causaba muchos dolores de cabeza. Cada vez que añadías un nuevo algoritmo de enrutamiento, la clase principal del navegador doblaba su tamaño. En cierto momento, la bestia se volvió demasiado difícil de mantener.
+
+### ¿Cómo funciona?
+
+El patrón Strategy sugiere que tomes esa clase que hace algo específico de muchas formas diferentes y extraigas todos esos algoritmos para colocarlos en clases separadas llamadas *estrategias*.
+
+La clase original, llamada *contexto*, debe tener un campo para almacenar una referencia a una de las estrategias. El contexto delega el trabajo a un objeto de estrategia vinculado en lugar de ejecutarlo por su cuenta.
+
+El contexto no es responsable de seleccionar un algoritmo adecuado para la tarea. En lugar de eso, el cliente pasa la estrategia deseada al contexto. De hecho, el contexto no sabe mucho acerca de las estrategias. Funciona con todas las estrategias a través de la misma interfaz genérica, que solo expone un único método para disparar el algoritmo encapsulado dentro de la estrategia seleccionada.
+
+### Estructura
+
+1.  La clase **Contexto** mantiene una referencia a una de las estrategias concretas y se comunica con este objeto únicamente a través de la interfaz de estrategia.
+2.  La interfaz **Estrategia** es común a todas las estrategias concretas. Declara un método que la clase contexto utiliza para ejecutar una estrategia.
+3.  Las **Estrategias Concretas** implementan distintas variaciones de un algoritmo que la clase contexto utiliza.
+4.  La clase contexto invoca el método de ejecución cada vez que necesita ejecutar el algoritmo. La clase contexto no sabe qué tipo de estrategia funciona o cómo se ejecuta el algoritmo.
+5.  El **Cliente** crea un objeto de estrategia específico y lo pasa a la clase contexto. La clase contexto expone un modificador (setter) que permite a los clientes sustituir la estrategia asociada al contexto durante el tiempo de ejecución.
+
+![Estructura del Patrón Strategy](assets/documentation/strategy.png)
+
+### ¿Cuándo utilizarlo?
+
+*   **Usa el patrón Strategy cuando quieras utilizar distintas variantes de un algoritmo dentro de un objeto y poder cambiar de un algoritmo a otro durante el tiempo de ejecución.**
+*   **Usa el patrón Strategy cuando tengas muchas clases similares que solo se diferencien en la forma en que ejecutan cierto comportamiento.**
+*   **Usa el patrón para aislar la lógica de negocio de una clase, de los detalles de implementación de algoritmos que pueden no ser tan importantes en el contexto de esa lógica.**
+*   **Usa el patrón cuando tu clase tenga un operador condicional masivo que cambie entre distintas variantes del mismo algoritmo.**
+
+### Pros y Contras
+
+#### Pros
+
+*   Puedes intercambiar algoritmos usados dentro de un objeto durante el tiempo de ejecución.
+*   Puedes aislar los detalles de implementación de un algoritmo del código que lo utiliza.
+*   Puedes sustituir la herencia por composición.
+*   *Principio de Abierto/Cerrado*. Puedes introducir nuevas estrategias sin tener que cambiar el contexto.
+
+#### Contras
+
+*   Si solo tienes un par de algoritmos que raramente cambian, no hay una razón real para complicar el programa en exceso con nuevas clases e interfaces que vengan con el patrón.
+*   Los clientes deben conocer las diferencias entre estrategias para poder seleccionar la adecuada.
+*   Muchos lenguajes de programación modernos tienen soporte de tipo funcional que te permite implementar distintas versiones de un algoritmo dentro de un grupo de funciones anónimas. Entonces podrías utilizar estas funciones exactamente como habrías utilizado los objetos de estrategia, pero sin saturar tu código con clases e interfaces adicionales.
+
+---
+
+## 🤝 Contribuir
+
+¡Las contribuciones son bienvenidas! Si quieres contribuir a este proyecto:
+
+1. 🍴 Haz fork del repositorio
+2. 🌟 Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. 💾 Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. 📤 Push a la rama (`git push origin feature/AmazingFeature`)
+5. 🔄 Abre un Pull Request
+
+### ¿Qué puedes aportar?
+- 🐛 **Reportar bugs**: Si encuentras algún error
+- 💡 **Nuevos patrones**: Implementar patrones adicionales
+- 📚 **Mejorar documentación**: Clarificar explicaciones
+- 🎨 **Ejemplos adicionales**: Casos de uso más complejos
+- 🌐 **Traducciones**: Documentación en otros idiomas
+
+## 📚 Recursos Adicionales
+
+### Libros Recomendados
+- 📖 **"Design Patterns: Elements of Reusable Object-Oriented Software"** - Gang of Four
+- 📘 **"Head First Design Patterns"** - Eric Freeman & Elisabeth Robson
+- 📙 **"Clean Code"** - Robert C. Martin
+
+### Enlaces Útiles
+- 🔗 [Refactoring Guru - Design Patterns](https://refactoring.guru/design-patterns)
+- 🔗 [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- 🔗 [Design Patterns in TypeScript](https://github.com/torokmark/design_patterns_in_typescript)
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 👨‍💻 Autor
+
+**Rafael H** - [@Rafaelh5z](https://github.com/Rafaelh5z)
+
+---
+
+### ⭐ Si este repositorio te ha sido útil, ¡no olvides darle una estrella!
+
+<div align="center">
+  <sub>Hecho con ❤️ para la comunidad de desarrolladores</sub>
+</div>
