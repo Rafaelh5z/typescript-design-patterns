@@ -20,14 +20,14 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 ## 📋 Índice
 
 ### 🏛️ Fundamentos
-- [¿Qué son los Patrones de Diseño?](#-qué-son-los-patrones-de-diseño)
-- [Principios SOLID](#-principios-solid)
-- [Tipos de Patrones de Diseño](#-tipos-de-patrones-de-diseño)
-- [Cuándo usar Patrones de Diseño](#-cuándo-usar-patrones-de-diseño)
-- [Cuándo NO usar Patrones de Diseño](#-no-los-uses-cuando)
+- [¿Qué son los Patrones de Diseño?](#qué-son-los-patrones-de-diseño)
+- [Principios SOLID](#️-principios-solid)
+- [Tipos de Patrones de Diseño](#tipos-de-patrones-de-diseño)
+- [Cuándo usar Patrones de Diseño](#cuándo-usar-patrones-de-diseño)
+- [Cuándo NO usar Patrones de Diseño](#no-los-uses-cuando)
 
 ### 🔧 Configuración del Proyecto
-- [Instalación y Configuración](#-instalación-y-configuración)
+- [Instalación y Configuración](#️-instalación-y-configuración)
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Comandos Disponibles](#-comandos-disponibles)
 - [Tests y Cobertura](#-tests-y-cobertura)
@@ -65,7 +65,7 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 - [Comparativa de Tipos de Patrones](#-comparativa-de-tipos-de-patrones)
 - [Relaciones entre Patrones](#-relaciones-entre-patrones)
 - [Patrones que se Complementan](#patrones-que-se-complementan)
-- [Antipatrones Comunes](#-antipatrones-comunes)
+- [Antipatrones Comunes](#️-antipatrones-comunes)
 
 ### 🎯 Guías Prácticas
 - [Mejores Prácticas](#-mejores-prácticas)
@@ -76,7 +76,7 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 ### 📚 Recursos Adicionales
 - [Referencias y Lecturas](#-referencias-y-lecturas)
 - [Contribución al Proyecto](#-contribución)
-- [Roadmap](#-roadmap)
+- [Roadmap](#️-roadmap)
 - [FAQ](#-preguntas-frecuentes)
 
 ---
@@ -445,11 +445,6 @@ Cada directorio de patrón contiene:
 - [Refactoring Guru - Design Patterns](https://refactoring.guru/design-patterns)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [SOLID Principles](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
-
-### 🎯 Cursos y Tutoriales
-- [Design Patterns in TypeScript](https://www.pluralsight.com/)
-- [Advanced TypeScript](https://egghead.io/)
-- [Software Architecture](https://www.coursera.org/)
 
 ---
 
@@ -1415,7 +1410,6 @@ El contexto no es responsable de seleccionar un algoritmo adecuado para la tarea
 ### Enlaces Útiles
 - 🔗 [Refactoring Guru - Design Patterns](https://refactoring.guru/design-patterns)
 - 🔗 [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- 🔗 [Design Patterns in TypeScript](https://github.com/torokmark/design_patterns_in_typescript)
 
 ## 📄 Licencia
 
