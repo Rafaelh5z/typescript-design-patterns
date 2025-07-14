@@ -1,5 +1,5 @@
 class Database {
-    private static instance: Database;
+    private static instance: Database
 
     private constructor() {
     }
@@ -8,12 +8,12 @@ class Database {
 
         if (!Database.instance) {
             console.log("Creating a single database.")
-            Database.instance = new Database();
+            Database.instance = new Database()
         } else {
             console.log("Database has already been created")
         }
 
-        return Database.instance;
+        return Database.instance
     }
 }
 
