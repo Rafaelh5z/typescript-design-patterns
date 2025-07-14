@@ -1,3 +1,4 @@
+import { Furniture } from './Furniture'
 
 export class Chair extends Furniture {
 
