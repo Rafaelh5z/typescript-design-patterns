@@ -1,5 +1,102 @@
-# Typescript Design Patterns
-Creational, Structural and Behavior patterns with typescript
+# TypeScript Design Patterns
+
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Patterns](https://img.shields.io/badge/Patterns-16-orange.svg)](#índice)
+[![Documentation](https://img.shields.io/badge/Documentation-Complete-brightgreen.svg)](#índice)
+
+Una guía completa de patrones de diseño implementados en TypeScript. Este repositorio contiene ejemplos prácticos de patrones creacionales, estructurales y de comportamiento con explicaciones detalladas y diagramas ilustrativos.
+
+## 🚀 ¿Qué son los Patrones de Diseño?
+
+Los patrones de diseño son soluciones reutilizables a problemas comunes en el diseño de software. Son plantillas que describen cómo resolver un problema que se puede usar en muchas situaciones diferentes. No son código específico, sino conceptos que pueden implementarse de diferentes maneras según el lenguaje de programación.
+
+### Beneficios de usar Patrones de Diseño:
+- ✅ **Reutilización de código**: Soluciones probadas y documentadas
+- ✅ **Comunicación mejorada**: Vocabulario común entre desarrolladores  
+- ✅ **Mejores prácticas**: Código más mantenible y escalable
+- ✅ **Resolución de problemas**: Enfoques estructurados para desafíos comunes
+
+## 📋 Índice
+
+### Patrones Creacionales
+*   [Builder](#patrón-de-diseño-builder-constructor)
+*   [Factory Method](#patrón-de-diseño-factory-method-método-fábrica)
+*   [Abstract Factory](#patrón-de-diseño-abstract-factory-fábrica-abstracta)
+*   [Prototype](#patrón-de-diseño-prototype-prototipo)
+*   [Singleton](#patrón-de-diseño-singleton)
+
+### Patrones Estructurales
+*   [Adapter](#patrón-de-diseño-adapter-adaptador)
+*   [Composite](#patrón-de-diseño-composite-compuesto)
+*   [Decorator](#patrón-de-diseño-decorator-decorador)
+*   [Facade](#patrón-de-diseño-facade-fachada)
+
+### Patrones de Comportamiento
+*   [Iterator](#patrón-de-diseño-iterator-iterador)
+*   [State](#patrón-de-diseño-state-estado)
+*   [Template Method](#patrón-de-diseño-template-method-método-plantilla)
+*   [Command](#patrón-de-diseño-command-comando)
+*   [Mediator](#patrón-de-diseño-mediator-mediador)
+*   [Observer](#patrón-de-diseño-observer-observador)
+*   [Strategy](#patrón-de-diseño-strategy-estrategia)
+
+---
+
+## 🛠️ Instalación y Configuración
+
+### Prerrequisitos
+- [Node.js](https://nodejs.org/) (versión 14 o superior)
+- [TypeScript](https://www.typescriptlang.org/) (versión 4.0 o superior)
+- Un editor de código (recomendado: VS Code)
+
+### Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/Rafaelh5z/typescript-design-patterns.git
+
+# Navegar al directorio
+cd typescript-design-patterns
+
+# Instalar dependencias
+npm install
+
+# Compilar TypeScript
+npm run build
+
+# Ejecutar ejemplos
+npm run start
+```
+
+## 🎯 Cómo usar este repositorio
+
+Cada patrón incluye:
+- 📖 **Documentación teórica**: Explicación del problema, solución y estructura
+- 💻 **Implementación práctica**: Código TypeScript comentado
+- 🖼️ **Diagramas UML**: Representación visual del patrón
+- ✨ **Ejemplos de uso**: Casos prácticos de aplicación
+
+### Estructura del proyecto
+```
+src/
+├── creationalPatterns/     # Patrones Creacionales
+├── structuralPatterns/     # Patrones Estructurales
+└── behavioralPatterns/     # Patrones de Comportamiento (próximamente)
+```
+
+## 📊 Comparativa de Tipos de Patrones
+
+---
+
+## 📊 Comparativa de Tipos de Patrones
+
+| Tipo | Propósito Principal | Enfoque | Cuándo Usar | Ejemplos |
+|------|-------------------|---------|-------------|----------|
+| **Creacionales** | Creación de objetos | Desacoplar la instanciación | Cuando la creación es compleja | Factory, Builder, Singleton |
+| **Estructurales** | Composición de objetos | Organizar relaciones | Cuando necesitas estructuras flexibles | Adapter, Decorator, Facade |
+| **Comportamiento** | Comunicación entre objetos | Algoritmos y responsabilidades | Cuando el comportamiento varía | Observer, Strategy, Command |
+
+---
 
 ## Patrones Creacionales
 
@@ -445,46 +542,6 @@ Imagina que estás trabajando en una biblioteca de notificaciones que permite a 
 
 La versión inicial de la biblioteca solo tenía la clase `Notificador` que enviaba alertas de texto simples a una lista de correos electrónicos que el cliente proporcionaba.
 
-En algún momento, te das cuenta de que los usuarios de la biblioteca querrían más que solo notificaciones por correo electrónico. Muchos de ellos querrían recibir notificaciones por SMS. Otros querrían recibir notificaciones de Facebook. Y, por supuesto, hay gente que querría recibir notificaciones de Slack.
+En algún momento, te das cuenta de que los usuarios de la biblioteca querrían más que solo notificaciones por correo electrónico. Muchos de ellos querrían recibir notificaciones de SMS. Otros querrían recibir notificaciones de Facebook. Y, por supuesto, hay gente que querría recibir notificaciones de Slack.
 
-¿Cómo implementarías esto? Podrías crear subclases para cada tipo de notificación, como `NotificadorSMS`, `NotificadorFacebook`, etc. Pero este enfoque tiene un gran problema: si un usuario quiere recibir notificaciones de varios tipos a la vez, tendrías que crear subclases combinadas como `NotificadorFacebookSMS`. Esto llevaría a una explosión de clases.
-
-### ¿Cómo funciona?
-
-El patrón Decorator te permite envolver un objeto con otros objetos que "decoran" el objeto original con nuevas funcionalidades.
-
-El patrón sugiere que crees una interfaz `Componente` y que tanto el objeto original como los decoradores la implementen. El cliente puede entonces trabajar con todos los objetos a través de esta interfaz.
-
-Un decorador es un objeto que envuelve a otro objeto. El decorador implementa la misma interfaz que el objeto que envuelve. El decorador delega todo el trabajo al objeto envuelto, pero también puede añadir algo propio antes o después de la delegación.
-
-Puedes envolver un objeto en múltiples capas de decoradores.
-
-### Estructura
-
-1.  La interfaz **Componente** declara la interfaz común tanto para los envoltorios como para los objetos envueltos.
-2.  El **Componente Concreto** es la clase de objetos que se envuelven. Define el comportamiento básico, que puede ser alterado por los decoradores.
-3.  La clase **Decorador Base** tiene un campo para referenciar un objeto envuelto. El tipo del campo debe ser la interfaz del componente para que pueda contener tanto componentes concretos como decoradores. El decorador base delega todo el trabajo al objeto envuelto.
-4.  Los **Decoradores Concretos** definen funcionalidades adicionales que se pueden añadir a los componentes dinámicamente. Los decoradores concretos sobrescriben los métodos del decorador base y ejecutan su comportamiento antes o después de llamar al método padre.
-5.  El **Cliente** puede envolver componentes en múltiples capas de decoradores, siempre que trabaje con todos los objetos a través de la interfaz del componente.
-
-![Estructura del Patrón Decorator](assets/documentation/decorator.png)
-
-### ¿Cuándo utilizarlo?
-
-*   **Usa el patrón Decorator cuando necesites poder asignar responsabilidades adicionales a los objetos en tiempo de ejecución sin romper el código que utiliza estos objetos.**
-*   **Usa el patrón cuando no sea posible o sea inconveniente extender el comportamiento de un objeto mediante la herencia.**
-
-### Pros y Contras
-
-#### Pros
-
-*   Puedes extender el comportamiento de un objeto sin hacer una nueva subclase.
-*   Puedes añadir o quitar responsabilidades de un objeto en tiempo de ejecución.
-*   Puedes combinar varias responsabilidades envolviendo un objeto con varios decoradores.
-*   *Principio de Responsabilidad Única*. Puedes dividir una clase monolítica que implementa muchas variantes de comportamiento en varias clases más pequeñas.
-
-#### Contras
-
-*   Puede ser difícil eliminar un envoltorio específico de la pila de envoltorios.
-*   Puede ser difícil implementar un decorador de tal manera que su comportamiento no dependa del orden en la pila de decoradores.
-*   La configuración inicial del código puede ser complicada, ya que necesitas introducir muchas clases pequeñas nuevas.
+¿Cómo implementaría

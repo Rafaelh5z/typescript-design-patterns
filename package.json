@@ -1,18 +1,35 @@
 {
-  "name": "design-patterns",
+  "name": "typescript-design-patterns",
   "version": "1.0.0",
-  "description": "Creational, Structural and Behavior patterns with typescript",
-  "main": "index.js",
+  "description": "Complete guide to design patterns implemented in TypeScript with practical examples and detailed explanations",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Rafaelh5z/typescript-design-patterns-.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "typescript",
+    "design-patterns",
+    "software-engineering",
+    "programming",
+    "oop",
+    "gang-of-four",
+    "creational-patterns",
+    "structural-patterns",
+    "behavioral-patterns",
+    "software-design"
+  ],
+  "author": "Rafael H <rafaelh5z@example.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Rafaelh5z/typescript-design-patterns-/issues"
   },
