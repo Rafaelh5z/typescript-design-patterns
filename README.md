@@ -20,26 +20,27 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 ## 📋 Índice
 
 ### 🏛️ Fundamentos
-- [¿Qué son los Patrones de Diseño?](#🚀-qué-son-los-patrones-de-diseño)
-- [Principios SOLID](#🏗️-principios-solid)
-- [Tipos de Patrones de Diseño](#🎯-tipos-de-patrones-de-diseño)
-- [Cuándo usar Patrones de Diseño](#✅-cuándo-usar-patrones-de-diseño)
-- [Cuándo NO usar Patrones de Diseño](#🔴-no-los-uses-cuando)
+- [¿Qué son los Patrones de Diseño?](#qué-son-los-patrones-de-diseño)
+- [Principios SOLID](#principios-solid)
+- [Tipos de Patrones de Diseño?](#tipos-de-patrones-de-diseño)
+- [Cuándo usar Patrones de Diseño](#cuándo-usar-patrones-de-diseño)
+- [Cuándo NO usar Patrones de Diseño](#no-los-uses-cuando)
 
 ### 🔧 Configuración del Proyecto
-- [Instalación y Configuración](#🛠️-instalación-y-configuración)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Comandos Disponibles](#-comandos-disponibles)
-- [Tests y Cobertura](#-tests-y-cobertura)
+- [Instalación y Configuración](#instalación-y-configuración)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Comandos Disponibles](#comandos-disponibles)
+- [Tests y Cobertura](#tests-y-cobertura)
+- [Cómo usar este repositorio](#cómo-usar-este-repositorio)
 
 ### 🏗️ Patrones Creacionales
 **Enfoque**: *Creación de objetos de manera flexible y desacoplada*
 - [Introducción a Patrones Creacionales](#patrones-creacionales)
 - [Abstract Factory](#patrón-de-diseño-abstract-factory-fábrica-abstracta) - Familias de objetos relacionados
 - [Builder](#patrón-de-diseño-builder-constructor) - Construcción paso a paso
-- [Factory Method](#patrón-de-diseño-factory-method-método-fábrica) - Creación mediante interfaz común
+- [Factory Method](#patrón-de-diseño-factory-method-método-de-fábrica) - Creación mediante interfaz común
 - [Prototype](#patrón-de-diseño-prototype-prototipo) - Clonación de objetos
-- [Singleton](#patrón-de-diseño-singleton) - Instancia única global
+- [Singleton](#patrón-de-diseño-singleton-instancia-única) - Instancia única global
 
 ### 🏢 Patrones Estructurales
 **Enfoque**: *Composición de objetos y clases para formar estructuras más grandes*
@@ -61,22 +62,22 @@ Los patrones de diseño son soluciones reutilizables a problemas comunes en el d
 - [Template Method](#patrón-de-diseño-template-method-método-plantilla) - Esqueleto de algoritmo
 
 ### 📊 Análisis Comparativo
-- [Comparativa de Tipos de Patrones](#📊-comparativa-de-tipos-de-patrones)
-- [Relaciones entre Patrones](#🔗-relaciones-entre-patrones)
+- [Comparativa de Tipos de Patrones](#comparativa-de-tipos-de-patrones)
+- [Relaciones entre Patrones](#relaciones-entre-patrones)
 - [Patrones que se Complementan](#patrones-que-se-complementan)
-- [Antipatrones Comunes](#⚠️-antipatrones-comunes)
+- [Antipatrones Comunes](#antipatrones-comunes)
 
 ### 🎯 Guías Prácticas
-- [Mejores Prácticas](#🎯-mejores-prácticas)
-- [Casos de Uso Reales](#🌍-casos-de-uso-reales)
-- [Patrones en Frameworks Populares](#🚀-patrones-en-frameworks-populares)
-- [Refactoring con Patrones](#🔧-refactoring-con-patrones)
+- [Mejores Prácticas](#mejores-prácticas)
+- [Casos de Uso Reales](#casos-de-uso-reales)
+- [Patrones en Frameworks Populares](#patrones-en-frameworks-populares)
+- [Refactoring con Patrones](#refactoring-con-patrones)
 
 ### 📚 Recursos Adicionales
-- [Referencias y Lecturas](#📚-referencias-y-lecturas)
-- [Contribución al Proyecto](#🤝-contribución)
-- [Roadmap](#🗺️-roadmap)
-- [FAQ](#❓-preguntas-frecuentes)
+- [Referencias y Lecturas](#referencias-y-lecturas)
+- [Contribución al Proyecto](#contribución)
+- [Roadmap](#roadmap)
+- [FAQ](#preguntas-frecuentes)
 
 ---
 
